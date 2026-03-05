@@ -110,8 +110,23 @@ body{font-family:'Inter',-apple-system,sans-serif;-webkit-font-smoothing:antiali
 .ptable td{font-size:13px;color:rgba(255,255,255,.7);padding:10px 12px;border-bottom:1px solid rgba(255,255,255,.05)}
 .ptable td strong{color:#fff;font-weight:600}
 
+/* CIRCLE MAP */
+.orbit-wrap{position:relative;width:520px;height:520px;margin:0 auto}
+.orbit-center{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:120px;height:120px;border-radius:50%;background:linear-gradient(135deg,rgba(0,113,227,.25),rgba(100,210,255,.15));border:2px solid rgba(0,113,227,.4);display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:3}
+.orbit-center strong{font-size:14px;font-weight:800;color:#fff}
+.orbit-center span{font-size:10px;color:var(--g2);text-align:center}
+.orbit-ring{position:absolute;top:50%;left:50%;border:1px solid rgba(255,255,255,.06);border-radius:50%;transform:translate(-50%,-50%)}
+.orbit-node{position:absolute;transform:translate(-50%,-50%);display:flex;flex-direction:column;align-items:center;gap:4px;z-index:2}
+.on-dot{width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:800;border:2px solid rgba(255,255,255,.15)}
+.on-dot-active{border-color:rgba(48,209,88,.5);box-shadow:0 0 20px rgba(48,209,88,.15)}
+.on-dot-hold{border-color:rgba(255,159,10,.4);box-shadow:0 0 12px rgba(255,159,10,.1)}
+.on-dot-future{border-color:rgba(191,90,242,.4);box-shadow:0 0 12px rgba(191,90,242,.1)}
+.on-name{font-size:11px;font-weight:700;color:rgba(255,255,255,.75);white-space:nowrap;text-align:center}
+.on-sub{font-size:9px;color:var(--g2);white-space:nowrap;text-align:center;max-width:100px}
+.orbit-line{position:absolute;top:50%;left:50%;height:1px;transform-origin:left center;background:linear-gradient(90deg,rgba(255,255,255,.08),rgba(255,255,255,.03));z-index:1}
+
 /* RESPONSIVE */
-@media(max-width:768px){.slide{padding:28px 20px}.two-col,.three-col,.four-col{grid-template-columns:1fr}.photo-grid-3,.photo-grid-2{grid-template-columns:1fr}}
+@media(max-width:768px){.slide{padding:28px 20px}.two-col,.three-col,.four-col{grid-template-columns:1fr}.photo-grid-3,.photo-grid-2{grid-template-columns:1fr}.orbit-wrap{width:340px;height:340px}}
 </style>
 </head>
 <body>
@@ -200,36 +215,7 @@ body{font-family:'Inter',-apple-system,sans-serif;-webkit-font-smoothing:antiali
   </div>
 </div>
 
-<!-- ═══ SLIDE 4: PARTNERSHIP ECOSYSTEM ════════════════════ -->
-<div class="slide sd">
-  <div class="ey ey-w">Partnerships Secured</div>
-  <h2 class="h2 h2w" style="text-align:center;max-width:700px">4 Strategic Partners. <span class="grad">All Organic.</span></h2>
-  <p class="sub sub-w" style="text-align:center;margin-bottom:28px">Each one chosen for what they bring to ChronoAI's ecosystem — students, builders, investors, and government reach.</p>
-  <div class="four-col">
-    <div class="p-card">
-      <div class="p-card-head"><img src="./img/sginnovate.png" class="p-logo" style="background:#fff"><div><div class="p-name">SGInnovate</div><span class="p-status ps-confirmed">✓ Confirmed</span></div></div>
-      <p class="p-what"><strong>Government-backed deep tech hub.</strong> Publishes our hackathon on their portal — direct access to students and Singapore's tech community. Runs AAAI hackathons, Startup Semester, Deep Dive programmes.</p>
-      <div><span class="p-pill">Students</span><span class="p-pill">Gov Backing</span><span class="p-pill">Free</span></div>
-    </div>
-    <div class="p-card">
-      <div class="p-card-head"><img src="./img/firstprompt.png" class="p-logo"><div><div class="p-name">First Prompt</div><span class="p-status ps-confirmed">✓ Confirmed</span></div></div>
-      <p class="p-what"><strong>APAC's flagship AI conference.</strong> 500+ member community. Their last event drew 300+ attendees at AWS. Panelists from Alibaba Cloud, Huawei AI, OpenAI. They share with their network as a community partner.</p>
-      <div><span class="p-pill">AI Community</span><span class="p-pill">300+ Events</span><span class="p-pill">Free</span></div>
-    </div>
-    <div class="p-card">
-      <div class="p-card-head"><img src="./img/e27.png" class="p-logo" style="background:#fff"><div><div class="p-name">e27</div><span class="p-status ps-confirmed">✓ Confirmed</span></div></div>
-      <p class="p-what"><strong>SEA's leading startup media.</strong> Decision makers, founders, and investors read their content. Community partner + publishing SoulGarden in their AI Newsletter — <strong>180K readership.</strong></p>
-      <div><span class="p-pill">Investors</span><span class="p-pill">180K Readers</span><span class="p-pill">Free</span></div>
-    </div>
-    <div class="p-card">
-      <div class="p-card-head"><img src="./img/chatandbuild.png" class="p-logo"><div><div class="p-name">ChatandBuild</div><span class="p-status ps-progress">In Discussion</span></div></div>
-      <p class="p-what"><strong>Platform for AI builders.</strong> Inventors of Non-Fungible Agents. Co-host on Luma + featured in their calendar. Strong women-in-tech community — 50-60 at their IWD event. Open to demo in our hackathon programming.</p>
-      <div><span class="p-pill">Builders</span><span class="p-pill">Co-Host</span><span class="p-pill">Free</span></div>
-    </div>
-  </div>
-</div>
-
-<!-- ═══ SLIDE 5: PRCA CONFERENCE ══════════════════════════ -->
+<!-- ═══ SLIDE 4: PRCA CONFERENCE ══════════════════════════ -->
 <div class="slide sd">
   <div class="two-col" style="align-items:center">
     <div>
@@ -283,7 +269,72 @@ body{font-family:'Inter',-apple-system,sans-serif;-webkit-font-smoothing:antiali
   </div>
 </div>
 
-<!-- ═══ SLIDE 7: SGINNOVATE + GOV ALIGNMENT ══════════════ -->
+<!-- ═══ SLIDE 6: PARTNER ECOSYSTEM CIRCLE MAP ═════════════ -->
+<div class="slide sd">
+  <div class="ey ey-w" style="text-align:center">Partnership Ecosystem</div>
+  <h2 class="h2 h2w" style="text-align:center;max-width:700px">ChronoAI's <span class="grad">Network.</span></h2>
+  <p class="sub sub-w" style="text-align:center;margin-bottom:16px">Partners we've built relationships with — ready to activate across products, events, and media.</p>
+  <div class="orbit-wrap">
+    <div class="orbit-ring" style="width:240px;height:240px"></div>
+    <div class="orbit-ring" style="width:420px;height:420px"></div>
+    <div class="orbit-ring" style="width:520px;height:520px"></div>
+    <div class="orbit-center"><strong>ChronoAI</strong><span>AI Incubator</span></div>
+    <!-- Top -->
+    <div class="orbit-node" style="top:4%;left:50%"><div class="on-dot on-dot-active" style="background:rgba(48,209,88,.1)">🏛️</div><div class="on-name">SGInnovate</div><div class="on-sub">Hackathon · Gov Platform</div></div>
+    <!-- Top Right -->
+    <div class="orbit-node" style="top:14%;left:82%"><div class="on-dot on-dot-active" style="background:rgba(0,113,227,.1)">⚡</div><div class="on-name">First Prompt</div><div class="on-sub">Hackathon · AI Community</div></div>
+    <!-- Right -->
+    <div class="orbit-node" style="top:42%;left:96%"><div class="on-dot on-dot-active" style="background:rgba(0,113,227,.1)">📰</div><div class="on-name">e27</div><div class="on-sub">SoulGarden Newsletter · Hackathon</div></div>
+    <!-- Bottom Right -->
+    <div class="orbit-node" style="top:75%;left:86%"><div class="on-dot on-dot-active" style="background:rgba(48,209,88,.1)">💬</div><div class="on-name">ChatandBuild</div><div class="on-sub">Hackathon Co-host · IWD</div></div>
+    <!-- Bottom -->
+    <div class="orbit-node" style="top:92%;left:58%"><div class="on-dot on-dot-future" style="background:rgba(191,90,242,.08)">🎙️</div><div class="on-name">Era of AI</div><div class="on-sub">SoulGarden Podcast · Apr release</div></div>
+    <!-- Bottom Left -->
+    <div class="orbit-node" style="top:82%;left:18%"><div class="on-dot on-dot-future" style="background:rgba(191,90,242,.08)">🏢</div><div class="on-name">Mandala Club</div><div class="on-sub">April AI Programming</div></div>
+    <!-- Left -->
+    <div class="orbit-node" style="top:50%;left:2%"><div class="on-dot on-dot-future" style="background:rgba(191,90,242,.08)">🤖</div><div class="on-name">LorongAI</div><div class="on-sub">Future Programming</div></div>
+    <!-- Top Left -->
+    <div class="orbit-node" style="top:18%;left:12%"><div class="on-dot on-dot-hold" style="background:rgba(255,159,10,.08)">📚</div><div class="on-name">Stack Overflow</div><div class="on-sub">1/12 Exclusive Podcasts · On Hold</div></div>
+    <!-- Top Center Left -->
+    <div class="orbit-node" style="top:6%;left:30%"><div class="on-dot on-dot-future" style="background:rgba(191,90,242,.08)">🔍</div><div class="on-name">Google</div><div class="on-sub">Partnership Exploration</div></div>
+  </div>
+  <div style="display:flex;gap:20px;justify-content:center;margin-top:16px;flex-wrap:wrap">
+    <div style="display:flex;align-items:center;gap:6px;font-size:11px;color:var(--g2)"><span style="width:10px;height:10px;border-radius:50%;background:rgba(48,209,88,.4);display:inline-block"></span> Active / Confirmed</div>
+    <div style="display:flex;align-items:center;gap:6px;font-size:11px;color:var(--g2)"><span style="width:10px;height:10px;border-radius:50%;background:rgba(255,159,10,.4);display:inline-block"></span> On Hold</div>
+    <div style="display:flex;align-items:center;gap:6px;font-size:11px;color:var(--g2)"><span style="width:10px;height:10px;border-radius:50%;background:rgba(191,90,242,.4);display:inline-block"></span> Future / In Progress</div>
+  </div>
+</div>
+
+<!-- ═══ SLIDE 7: 4 HACKATHON PARTNERS ═════════════════════ -->
+<div class="slide sd">
+  <div class="ey ey-w" style="text-align:center">Hackathon Partnerships</div>
+  <h2 class="h2 h2w" style="text-align:center;max-width:700px">4 Strategic Partners. <span class="grad">All Organic.</span></h2>
+  <p class="sub sub-w" style="text-align:center;margin-bottom:28px">Each one chosen for what they bring to ChronoAI's hackathon ecosystem — students, builders, investors, and government reach.</p>
+  <div class="four-col">
+    <div class="p-card">
+      <div class="p-card-head"><img src="./img/sginnovate.png" class="p-logo" style="background:#fff"><div><div class="p-name">SGInnovate</div><span class="p-status ps-confirmed">✓ Confirmed</span></div></div>
+      <p class="p-what"><strong>Government-backed deep tech hub.</strong> Publishes our hackathon on their portal — direct access to students and Singapore's tech community.</p>
+      <div><span class="p-pill">Students</span><span class="p-pill">Gov Backing</span><span class="p-pill">Free</span></div>
+    </div>
+    <div class="p-card">
+      <div class="p-card-head"><img src="./img/firstprompt.png" class="p-logo"><div><div class="p-name">First Prompt</div><span class="p-status ps-confirmed">✓ Confirmed</span></div></div>
+      <p class="p-what"><strong>APAC's flagship AI conference.</strong> 500+ member community. 300+ at their last event at AWS. Selective — partnership through personal coffee chat.</p>
+      <div><span class="p-pill">AI Community</span><span class="p-pill">300+ Events</span><span class="p-pill">Free</span></div>
+    </div>
+    <div class="p-card">
+      <div class="p-card-head"><img src="./img/e27.png" class="p-logo" style="background:#fff"><div><div class="p-name">e27</div><span class="p-status ps-confirmed">✓ Confirmed</span></div></div>
+      <p class="p-what"><strong>SEA's leading startup media.</strong> Decision makers and investors. Community partner + SoulGarden in AI Newsletter — <strong>180K readership.</strong></p>
+      <div><span class="p-pill">Investors</span><span class="p-pill">180K Readers</span><span class="p-pill">Free</span></div>
+    </div>
+    <div class="p-card">
+      <div class="p-card-head"><img src="./img/chatandbuild.png" class="p-logo"><div><div class="p-name">ChatandBuild</div><span class="p-status ps-progress">In Discussion</span></div></div>
+      <p class="p-what"><strong>Platform for AI builders.</strong> Non-Fungible Agents inventors. Co-host on Luma. Strong women-in-tech community. Open to demo in programming.</p>
+      <div><span class="p-pill">Builders</span><span class="p-pill">Co-Host</span><span class="p-pill">Free</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ SLIDE 8: SGINNOVATE + GOV ALIGNMENT ══════════════ -->
 <div class="slide sd">
   <div class="two-col" style="align-items:start">
     <div>
@@ -343,39 +394,6 @@ body{font-family:'Inter',-apple-system,sans-serif;-webkit-font-smoothing:antiali
         </div>
         <p class="p-what"><strong>Dual value:</strong> Community partner for the hackathon AND publishing SoulGarden in their AI Newsletter (180K readership). By working with them, we reach potential investors too. <strong>Both are free.</strong></p>
         <div><span class="p-pill">Community Partner</span><span class="p-pill">SoulGarden Feature</span><span class="p-pill">✓ Confirmed</span></div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ═══ SLIDE 9: RITESET 2.0 + AURASNAP ═════════════════ -->
-<div class="slide sd">
-  <div class="two-col" style="max-width:900px">
-    <div style="display:flex;flex-direction:column;justify-content:center">
-      <div class="ey ey-w">Product · RiteSet</div>
-      <h2 class="h2 h2w" style="font-size:clamp(24px,3vw,36px)">RiteSet 2.0 <span class="grad">Submitted.</span></h2>
-      <div class="achieved">✓ Target Achieved · App Store Submission</div>
-      <p style="color:rgba(255,255,255,.55);font-size:15px;line-height:1.65;margin-bottom:20px">RiteSet 2.0 build has been submitted to the App Store for approval on 6 March — with branding refresh fully implemented and AI backend logic complete.</p>
-      <div class="card">
-        <div style="font-size:12px;font-weight:700;color:var(--green);text-transform:uppercase;letter-spacing:.08em;margin-bottom:10px">Status</div>
-        <div class="tk-item" style="margin-bottom:8px"><div class="tk-num" style="background:rgba(48,209,88,.15);color:var(--green)">✓</div><div class="tk-text">Branding refresh <strong>complete</strong></div></div>
-        <div class="tk-item" style="margin-bottom:8px"><div class="tk-num" style="background:rgba(48,209,88,.15);color:var(--green)">✓</div><div class="tk-text">AI backend logic <strong>complete</strong></div></div>
-        <div class="tk-item" style="margin-bottom:0"><div class="tk-num" style="background:rgba(48,209,88,.15);color:var(--green)">✓</div><div class="tk-text">Submitted to <strong>App Store for review</strong></div></div>
-      </div>
-    </div>
-    <div style="display:flex;flex-direction:column;justify-content:center">
-      <div class="ey ey-w">Research · AuraSnap</div>
-      <h2 class="h2 h2w" style="font-size:clamp(22px,2.5vw,30px)">Crystal Community Research</h2>
-      <p style="color:rgba(255,255,255,.55);font-size:14px;line-height:1.65;margin-bottom:16px">Initiating research into the crystal community as a potential audience and integration path for AuraSnap — exploring how crystal collectors, wellness practitioners, and spiritual communities engage with tech products.</p>
-      <div class="card">
-        <div style="font-size:12px;font-weight:700;color:var(--purple);text-transform:uppercase;letter-spacing:.08em;margin-bottom:10px">Research Areas</div>
-        <div style="display:flex;flex-wrap:wrap;gap:6px">
-          <span class="option-pill">Crystal collector demographics</span>
-          <span class="option-pill">Community size & platforms</span>
-          <span class="option-pill">Wellness x Tech overlap</span>
-          <span class="option-pill">Influencer landscape</span>
-          <span class="option-pill">Integration opportunities</span>
-        </div>
       </div>
     </div>
   </div>
@@ -466,7 +484,40 @@ body{font-family:'Inter',-apple-system,sans-serif;-webkit-font-smoothing:antiali
   </div>
 </div>
 
-<!-- ═══ SLIDE 12: CLOSE ══════════════════════════════════ -->
+<!-- ═══ SLIDE 13: RITESET 2.0 + AURASNAP ═════════════════ -->
+<div class="slide sd">
+  <div class="two-col" style="max-width:900px">
+    <div style="display:flex;flex-direction:column;justify-content:center">
+      <div class="ey ey-w">Product · RiteSet</div>
+      <h2 class="h2 h2w" style="font-size:clamp(24px,3vw,36px)">RiteSet 2.0 <span class="grad">Submitted.</span></h2>
+      <div class="achieved">✓ Target Achieved · App Store Submission</div>
+      <p style="color:rgba(255,255,255,.55);font-size:15px;line-height:1.65;margin-bottom:20px">RiteSet 2.0 build has been submitted to the App Store for approval on 6 March — AI backend logic is complete. Branding refresh is still in progress and will be finalised in the next sprint.</p>
+      <div class="card">
+        <div style="font-size:12px;font-weight:700;color:var(--green);text-transform:uppercase;letter-spacing:.08em;margin-bottom:10px">Status</div>
+        <div class="tk-item" style="margin-bottom:8px"><div class="tk-num" style="background:rgba(255,159,10,.15);color:var(--orange)">⟳</div><div class="tk-text">Branding refresh <strong>in progress</strong></div></div>
+        <div class="tk-item" style="margin-bottom:8px"><div class="tk-num" style="background:rgba(48,209,88,.15);color:var(--green)">✓</div><div class="tk-text">AI backend logic <strong>complete</strong></div></div>
+        <div class="tk-item" style="margin-bottom:0"><div class="tk-num" style="background:rgba(48,209,88,.15);color:var(--green)">✓</div><div class="tk-text">Submitted to <strong>App Store for review</strong></div></div>
+      </div>
+    </div>
+    <div style="display:flex;flex-direction:column;justify-content:center">
+      <div class="ey ey-w">Research · AuraSnap</div>
+      <h2 class="h2 h2w" style="font-size:clamp(22px,2.5vw,30px)">Crystal Community Research</h2>
+      <p style="color:rgba(255,255,255,.55);font-size:14px;line-height:1.65;margin-bottom:16px">Initiating research into the crystal community as a potential audience and integration path for AuraSnap — exploring how crystal collectors, wellness practitioners, and spiritual communities engage with tech products.</p>
+      <div class="card">
+        <div style="font-size:12px;font-weight:700;color:var(--purple);text-transform:uppercase;letter-spacing:.08em;margin-bottom:10px">Research Areas</div>
+        <div style="display:flex;flex-wrap:wrap;gap:6px">
+          <span class="option-pill">Crystal collector demographics</span>
+          <span class="option-pill">Community size & platforms</span>
+          <span class="option-pill">Wellness x Tech overlap</span>
+          <span class="option-pill">Influencer landscape</span>
+          <span class="option-pill">Integration opportunities</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ SLIDE 14: CLOSE ══════════════════════════════════ -->
 <div class="slide sd">
   <div style="text-align:center;max-width:800px">
     <div class="ey ey-w" style="justify-content:center">Everything Connects</div>
@@ -475,8 +526,8 @@ body{font-family:'Inter',-apple-system,sans-serif;-webkit-font-smoothing:antiali
     <div class="four-col" style="max-width:800px;margin:0 auto">
       <div style="text-align:center;padding:20px 12px;background:rgba(255,255,255,.03);border-radius:16px">
         <div style="font-size:26px;margin-bottom:8px">🤝</div>
-        <div style="font-size:28px;font-weight:800;color:#fff">4</div>
-        <div style="font-size:11px;color:var(--g2)">Partners Secured</div>
+        <div style="font-size:28px;font-weight:800;color:#fff">9</div>
+        <div style="font-size:11px;color:var(--g2)">Partners in Ecosystem</div>
       </div>
       <div style="text-align:center;padding:20px 12px;background:rgba(255,255,255,.03);border-radius:16px">
         <div style="font-size:26px;margin-bottom:8px">🎤</div>
