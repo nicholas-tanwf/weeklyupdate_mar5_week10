@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ChronoAI · Week 10 Progress — Nicholas</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--black:#1d1d1f;--g1:#424245;--g2:#86868b;--g3:#d2d2d7;--bg:#f5f5f7;--white:#fff;--blue:#0071e3;--green:#30d158;--orange:#ff9f0a;--purple:#bf5af2;--teal:#64d2ff;--pink:#ff375f;--red:#ff453a}
+body{font-family:'Inter',-apple-system,sans-serif;-webkit-font-smoothing:antialiased;background:#000;color:var(--black);overflow:hidden;height:100vh;width:100vw}
+
+.slideshow{width:100vw;height:100vh;position:relative}
+.slide{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .55s cubic-bezier(.4,0,.2,1),transform .55s cubic-bezier(.4,0,.2,1);transform:scale(.97) translateY(8px);padding:52px 72px;overflow:hidden;overflow-y:auto}
+.slide.active{opacity:1;pointer-events:all;transform:scale(1) translateY(0)}
+
+.progress-track{position:fixed;top:0;left:0;right:0;height:3px;background:rgba(255,255,255,.06);z-index:200}
+.progress-fill{height:100%;background:linear-gradient(90deg,var(--blue),var(--teal));transition:width .5s cubic-bezier(.4,0,.2,1);border-radius:0 2px 2px 0}
+.nav-dots{position:fixed;right:28px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:10px;z-index:200}
+.dot{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.18);cursor:pointer;border:none;transition:all .3s ease}
+.dot.active{background:var(--white);height:18px;border-radius:3px}
+.nav-arrow{position:fixed;bottom:36px;z-index:200;background:rgba(255,255,255,.07);backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,.1);color:#fff;width:42px;height:42px;border-radius:50%;cursor:pointer;font-size:17px;display:flex;align-items:center;justify-content:center;transition:all .2s ease;font-family:inherit}
+.nav-arrow:hover{background:rgba(255,255,255,.14)}
+.nav-arrow.prev{left:calc(50% - 54px)}
+.nav-arrow.next{left:calc(50% + 12px)}
+.slide-counter{position:fixed;bottom:44px;left:50%;transform:translateX(-50%);color:rgba(255,255,255,.2);font-size:11px;font-weight:500;z-index:199;letter-spacing:.15em;font-variant-numeric:tabular-nums}
+
+/* COMMON */
+.ey{font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--blue);margin-bottom:10px}
+.ey-w{color:rgba(255,255,255,.5)}
+.ey-w::before{background:rgba(255,255,255,.3)}
+.h2{font-size:clamp(30px,4vw,50px);font-weight:800;line-height:1.08;letter-spacing:-.03em;margin-bottom:10px}
+.h2w{color:#fff}.h2d{color:var(--black)}
+.sub{font-size:16px;color:var(--g2);line-height:1.6;max-width:540px;margin-bottom:32px}
+.sub-w{color:rgba(255,255,255,.45)}
+.grad{background:linear-gradient(90deg,var(--blue),var(--teal),var(--green));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.sd{background:#000}.sw{background:var(--white)}.sg{background:var(--bg)}
+
+/* COVER */
+.cover-tag{font-size:13px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);margin-bottom:20px}
+.cover-h1{font-size:clamp(40px,5.5vw,76px);font-weight:900;color:#fff;line-height:1.05;text-align:center;max-width:860px;letter-spacing:-.035em;margin-bottom:18px}
+.cover-sub{font-size:20px;font-weight:400;color:var(--g2);text-align:center;max-width:520px;line-height:1.5;margin-bottom:44px}
+.cover-avatar{width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,var(--blue),var(--purple));display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:700;color:#fff}
+.cover-info strong{font-size:16px;font-weight:600;color:#fff;display:block}
+.cover-info span{font-size:13px;color:var(--g2)}
+
+/* PHOTO GRID */
+.photo-grid{display:grid;gap:6px;width:100%;max-width:700px}
+.photo-grid img{width:100%;border-radius:14px;display:block;object-fit:cover}
+.photo-grid-3{grid-template-columns:1fr 1fr 1fr}
+.photo-grid-2{grid-template-columns:1fr 1fr}
+
+/* CARD STYLES */
+.card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:20px;padding:24px}
+.card-w{background:var(--bg);border:none;padding:24px}
+.partner-logo{height:36px;object-fit:contain;margin-bottom:14px;filter:brightness(0) invert(1);opacity:.8}
+.partner-logo-dark{filter:none;opacity:1}
+
+/* TWO COL */
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:32px;width:100%;max-width:1000px;align-items:start}
+.three-col{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;width:100%;max-width:1000px}
+.four-col{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:12px;width:100%;max-width:1000px}
+
+/* FLYWHEEL */
+.fw-step{text-align:center;padding:20px 16px;background:rgba(255,255,255,.03);border-radius:16px;position:relative}
+.fw-num{font-size:40px;font-weight:900;color:rgba(255,255,255,.06);line-height:1;margin-bottom:4px}
+.fw-icon{font-size:28px;margin-bottom:8px}
+.fw-label{font-size:14px;font-weight:700;color:#fff;margin-bottom:4px}
+.fw-desc{font-size:12px;color:var(--g2);line-height:1.5}
+.fw-arrow{position:absolute;right:-14px;top:50%;transform:translateY(-50%);font-size:18px;color:rgba(255,255,255,.15);z-index:2}
+
+/* PARTNER CARDS */
+.p-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:20px;padding:22px 20px;display:flex;flex-direction:column}
+.p-card-head{display:flex;align-items:center;gap:14px;margin-bottom:14px}
+.p-logo{width:44px;height:44px;border-radius:12px;object-fit:contain;background:rgba(255,255,255,.08);padding:6px}
+.p-name{font-size:15px;font-weight:700;color:#fff}
+.p-status{font-size:11px;font-weight:600;padding:3px 10px;border-radius:100px;display:inline-block;margin-top:2px}
+.ps-confirmed{background:rgba(48,209,88,.15);color:var(--green)}
+.ps-progress{background:rgba(255,159,10,.15);color:var(--orange)}
+.p-what{font-size:13px;color:rgba(255,255,255,.55);line-height:1.6;flex:1}
+.p-what strong{color:rgba(255,255,255,.85);font-weight:600}
+.p-pill{display:inline-block;padding:4px 10px;border-radius:100px;font-size:11px;font-weight:600;background:rgba(255,255,255,.06);color:rgba(255,255,255,.4);margin-top:10px;margin-right:4px}
+
+/* TAKEAWAY */
+.tk-item{display:flex;align-items:flex-start;gap:14px;margin-bottom:14px}
+.tk-num{width:28px;height:28px;border-radius:50%;background:rgba(0,113,227,.15);color:var(--blue);font-size:12px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px}
+.tk-text{font-size:13px;color:rgba(255,255,255,.65);line-height:1.6}
+.tk-text strong{color:#fff;font-weight:600}
+
+/* CONNECTION PILLS */
+.conn-pill{display:inline-flex;align-items:center;gap:6px;padding:6px 14px;border-radius:100px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);font-size:12px;color:rgba(255,255,255,.6);margin:3px}
+.conn-pill strong{color:#fff;font-weight:600}
+
+/* HACKATHON */
+.hack-stat{text-align:center;padding:20px}
+.hack-stat strong{font-size:32px;font-weight:800;color:#fff;display:block;letter-spacing:-.02em}
+.hack-stat span{font-size:12px;color:var(--g2)}
+.q-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:20px;margin-bottom:10px}
+.q-num{font-size:13px;font-weight:800;color:var(--orange);margin-bottom:6px}
+.q-title{font-size:15px;font-weight:700;color:#fff;margin-bottom:6px}
+.q-body{font-size:13px;color:rgba(255,255,255,.5);line-height:1.5}
+.option-pill{display:inline-block;padding:5px 12px;border-radius:100px;font-size:12px;font-weight:600;background:rgba(255,255,255,.06);color:rgba(255,255,255,.5);margin:3px}
+
+/* ACHIEVED BADGE */
+.achieved{display:inline-flex;align-items:center;gap:6px;padding:8px 18px;border-radius:100px;background:rgba(48,209,88,.12);border:1px solid rgba(48,209,88,.25);font-size:13px;font-weight:700;color:var(--green);margin-bottom:16px}
+
+/* TABLE */
+.ptable{width:100%;border-collapse:collapse;margin-top:12px}
+.ptable th{text-align:left;font-size:11px;font-weight:700;color:var(--g2);text-transform:uppercase;letter-spacing:.08em;padding:8px 12px;border-bottom:1px solid rgba(255,255,255,.08)}
+.ptable td{font-size:13px;color:rgba(255,255,255,.7);padding:10px 12px;border-bottom:1px solid rgba(255,255,255,.05)}
+.ptable td strong{color:#fff;font-weight:600}
+
+/* RESPONSIVE */
+@media(max-width:768px){.slide{padding:28px 20px}.two-col,.three-col,.four-col{grid-template-columns:1fr}.photo-grid-3,.photo-grid-2{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="progress-track"><div class="progress-fill" id="progress"></div></div>
+<div class="nav-dots" id="navDots"></div>
+<button class="nav-arrow prev" onclick="go(-1)">←</button>
+<button class="nav-arrow next" onclick="go(1)">→</button>
+<div class="slide-counter" id="counter"></div>
+
+<div class="slideshow" id="deck">
+
+<!-- ═══ SLIDE 1: COVER ═══════════════════════════════════ -->
+<div class="slide sd active">
+  <div class="cover-tag">Week 10 Progress · 5 March 2026</div>
+  <h1 class="cover-h1">Building the <span class="grad">AI Community.</span><br>One Connection at a Time.</h1>
+  <p class="cover-sub">Partnerships. Hackathon. Product. How every relationship, event, and conversation feeds into ChronoAI's long-term vision.</p>
+  <div style="display:flex;align-items:center;gap:14px">
+    <div class="cover-avatar">N</div>
+    <div class="cover-info"><strong>Nicholas</strong><span>ChronoAI · Marketing & Partnerships</span></div>
+  </div>
+</div>
+
+<!-- ═══ SLIDE 2: THE NORTH STAR ══════════════════════════ -->
+<div class="slide sd">
+  <div class="ey ey-w">The Long-Term Vision</div>
+  <h2 class="h2 h2w" style="text-align:center;max-width:760px">ChronoAI as Singapore's <span class="grad">AI Incubator & Community.</span></h2>
+  <p class="sub sub-w" style="text-align:center">We're not just building products. We're building an ecosystem — starting small, forming real relationships with the right people, and positioning ChronoAI as a source of inspiration through what we create.</p>
+  <div class="three-col" style="max-width:800px;margin-top:8px">
+    <div style="text-align:center;padding:28px 20px;background:rgba(255,255,255,.03);border-radius:20px">
+      <div style="font-size:32px;margin-bottom:12px">🌱</div>
+      <div style="font-size:14px;font-weight:700;color:#fff;margin-bottom:6px">Start Small</div>
+      <div style="font-size:13px;color:var(--g2);line-height:1.5">Form genuine connections with people who have the right communities and influence.</div>
+    </div>
+    <div style="text-align:center;padding:28px 20px;background:rgba(255,255,255,.03);border-radius:20px">
+      <div style="font-size:32px;margin-bottom:12px">🤝</div>
+      <div style="font-size:14px;font-weight:700;color:#fff;margin-bottom:6px">Build Relationships</div>
+      <div style="font-size:13px;color:var(--g2);line-height:1.5">Coffee chats, events, personal outreach — not cold emails. We show up, and they remember us.</div>
+    </div>
+    <div style="text-align:center;padding:28px 20px;background:rgba(255,255,255,.03);border-radius:20px">
+      <div style="font-size:32px;margin-bottom:12px">🚀</div>
+      <div style="font-size:14px;font-weight:700;color:#fff;margin-bottom:6px">Earn Authority</div>
+      <div style="font-size:13px;color:var(--g2);line-height:1.5">Through our products, hackathons, and community — not by saying it, but by proving it.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ SLIDE 3: THE STRATEGY ENGINE ═════════════════════ -->
+<div class="slide sd">
+  <div class="ey ey-w">The Strategy</div>
+  <h2 class="h2 h2w" style="text-align:center;max-width:700px">Every Event. Every Coffee. Every Handshake. <span class="grad">Compounds.</span></h2>
+  <p class="sub sub-w" style="text-align:center;margin-bottom:36px">This is not random networking. It's a deliberate flywheel where each action feeds the next.</p>
+  <div class="four-col" style="max-width:860px">
+    <div class="fw-step">
+      <div class="fw-num">01</div>
+      <div class="fw-icon">🎤</div>
+      <div class="fw-label">Attend Events</div>
+      <div class="fw-desc">Show up where the AI community gathers. Be seen. Listen. Learn.</div>
+      <span class="fw-arrow">→</span>
+    </div>
+    <div class="fw-step">
+      <div class="fw-num">02</div>
+      <div class="fw-icon">☕</div>
+      <div class="fw-label">Form Connections</div>
+      <div class="fw-desc">Personal outreach. Coffee chats. Real conversations, not pitches.</div>
+      <span class="fw-arrow">→</span>
+    </div>
+    <div class="fw-step">
+      <div class="fw-num">03</div>
+      <div class="fw-icon">🤝</div>
+      <div class="fw-label">Secure Partners</div>
+      <div class="fw-desc">They say yes because they know us — not because we paid them.</div>
+      <span class="fw-arrow">→</span>
+    </div>
+    <div class="fw-step">
+      <div class="fw-num">04</div>
+      <div class="fw-icon">🌐</div>
+      <div class="fw-label">Grow Community</div>
+      <div class="fw-desc">Partners amplify us. Community grows. ChronoAI becomes a name.</div>
+    </div>
+  </div>
+  <div style="margin-top:24px;text-align:center">
+    <div style="display:inline-flex;align-items:center;gap:10px;padding:10px 22px;border-radius:100px;background:rgba(48,209,88,.08);border:1px solid rgba(48,209,88,.2)">
+      <span style="font-size:14px;font-weight:700;color:var(--green)">Total partnership cost this week: $0</span>
+      <span style="font-size:12px;color:rgba(255,255,255,.35)">Every partner secured through personal outreach.</span>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ SLIDE 4: PARTNERSHIP ECOSYSTEM ════════════════════ -->
+<div class="slide sd">
+  <div class="ey ey-w">Partnerships Secured</div>
+  <h2 class="h2 h2w" style="text-align:center;max-width:700px">4 Strategic Partners. <span class="grad">All Organic.</span></h2>
+  <p class="sub sub-w" style="text-align:center;margin-bottom:28px">Each one chosen for what they bring to ChronoAI's ecosystem — students, builders, investors, and government reach.</p>
+  <div class="four-col">
+    <div class="p-card">
+      <div class="p-card-head"><img src="./img/sginnovate.png" class="p-logo" style="background:#fff"><div><div class="p-name">SGInnovate</div><span class="p-status ps-confirmed">✓ Confirmed</span></div></div>
+      <p class="p-what"><strong>Government-backed deep tech hub.</strong> Publishes our hackathon on their portal — direct access to students and Singapore's tech community. Runs AAAI hackathons, Startup Semester, Deep Dive programmes.</p>
+      <div><span class="p-pill">Students</span><span class="p-pill">Gov Backing</span><span class="p-pill">Free</span></div>
+    </div>
+    <div class="p-card">
+      <div class="p-card-head"><img src="./img/firstprompt.png" class="p-logo"><div><div class="p-name">First Prompt</div><span class="p-status ps-confirmed">✓ Confirmed</span></div></div>
+      <p class="p-what"><strong>APAC's flagship AI conference.</strong> 500+ member community. Their last event drew 300+ attendees at AWS. Panelists from Alibaba Cloud, Huawei AI, OpenAI. They share with their network as a community partner.</p>
+      <div><span class="p-pill">AI Community</span><span class="p-pill">300+ Events</span><span class="p-pill">Free</span></div>
+    </div>
+    <div class="p-card">
+      <div class="p-card-head"><img src="./img/e27.png" class="p-logo" style="background:#fff"><div><div class="p-name">e27</div><span class="p-status ps-confirmed">✓ Confirmed</span></div></div>
+      <p class="p-what"><strong>SEA's leading startup media.</strong> Decision makers, founders, and investors read their content. Community partner + publishing SoulGarden in their AI Newsletter — <strong>180K readership.</strong></p>
+      <div><span class="p-pill">Investors</span><span class="p-pill">180K Readers</span><span class="p-pill">Free</span></div>
+    </div>
+    <div class="p-card">
+      <div class="p-card-head"><img src="./img/chatandbuild.png" class="p-logo"><div><div class="p-name">ChatandBuild</div><span class="p-status ps-progress">In Discussion</span></div></div>
+      <p class="p-what"><strong>Platform for AI builders.</strong> Inventors of Non-Fungible Agents. Co-host on Luma + featured in their calendar. Strong women-in-tech community — 50-60 at their IWD event. Open to demo in our hackathon programming.</p>
+      <div><span class="p-pill">Builders</span><span class="p-pill">Co-Host</span><span class="p-pill">Free</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ SLIDE 5: PRCA CONFERENCE ══════════════════════════ -->
+<div class="slide sd">
+  <div class="two-col" style="align-items:center">
+    <div>
+      <div class="ey ey-w">Event · PRCA APAC Conference</div>
+      <h2 class="h2 h2w" style="font-size:clamp(24px,3vw,34px)">2026: The Year of Being Human</h2>
+      <p style="color:rgba(255,255,255,.45);font-size:14px;margin-bottom:20px">4 March 2026 · Singapore</p>
+      <div class="tk-item"><div class="tk-num">1</div><div class="tk-text"><strong>Authenticity is everything.</strong> In the age of AI, human connection and genuine storytelling are what build trust — not polish.</div></div>
+      <div class="tk-item"><div class="tk-num">2</div><div class="tk-text"><strong>AI is the tool, humans decide.</strong> Critical thinking and creativity remain irreplaceable for executive decisions.</div></div>
+      <div class="tk-item"><div class="tk-num">3</div><div class="tk-text"><strong>Community drives every brand.</strong> Confirmed by heads of comms at Razer, ByteDance, and Climate UX.</div></div>
+      <div class="tk-item"><div class="tk-num">4</div><div class="tk-text"><strong>The SEO → LLM shift.</strong> Publications are now optimising for AI crawlers, not just Google — a fundamental change in how PR reaches audiences.</div></div>
+      <div style="margin-top:16px">
+        <div class="conn-pill"><strong>Nikhil Kharoo</strong> · Head of PR, Razer</div>
+        <div class="conn-pill"><strong>Puneet Pal Singh</strong> · Head of Comms, ByteDance</div>
+        <div class="conn-pill"><strong>Julie Schiller</strong> · Founder Climate UX, ex Google</div>
+        <div class="conn-pill"><strong>Media Outreach</strong> · Industry contacts</div>
+      </div>
+    </div>
+    <div>
+      <div class="photo-grid photo-grid-2" style="gap:6px">
+        <img src="./img/prca1.png" alt="PRCA Conference" style="border-radius:16px;height:220px">
+        <img src="./img/prca3.png" alt="PRCA Conference" style="border-radius:16px;height:220px">
+      </div>
+      <img src="./img/prca2.png" alt="PRCA Conference" style="width:100%;border-radius:16px;margin-top:6px;height:200px;object-fit:cover">
+    </div>
+  </div>
+</div>
+
+<!-- ═══ SLIDE 6: IWD CODECHELLA ═══════════════════════════ -->
+<div class="slide sd">
+  <div class="two-col" style="align-items:center">
+    <div>
+      <div class="photo-grid photo-grid-2" style="gap:6px">
+        <img src="./img/iwd1.png" alt="IWD Codechella" style="border-radius:16px;height:220px">
+        <img src="./img/iwd2.png" alt="IWD Codechella" style="border-radius:16px;height:220px">
+      </div>
+      <img src="./img/iwd3.png" alt="IWD Codechella" style="width:100%;border-radius:16px;margin-top:6px;height:200px;object-fit:cover">
+    </div>
+    <div>
+      <div class="ey ey-w">Event · IWD Codechella</div>
+      <h2 class="h2 h2w" style="font-size:clamp(22px,3vw,32px)">ChatandBuild x CFTE x Global Women in AI</h2>
+      <p style="color:rgba(255,255,255,.45);font-size:14px;margin-bottom:16px">50–60 attendees · Women in Tech community · Singapore</p>
+      <p style="color:rgba(255,255,255,.55);font-size:14px;line-height:1.65;margin-bottom:18px">Attended personally to deepen the ChatandBuild relationship and connect with Singapore's women-in-tech ecosystem — a community that directly aligns with ChronoAI's mission of inclusive AI building.</p>
+      <div style="font-size:12px;font-weight:700;color:var(--g2);text-transform:uppercase;letter-spacing:.1em;margin-bottom:10px">Connections Made</div>
+      <div class="conn-pill"><strong>Tetiana</strong> · Odyssea AI</div>
+      <div class="conn-pill"><strong>Wan Wei</strong> · ANCHR AI Labs</div>
+      <div class="conn-pill"><strong>Shery Chan</strong> · Dir. AI Product Strategy</div>
+      <div class="conn-pill"><strong>Chloe Tan</strong> · Head of Asia, Founders Forum</div>
+      <div class="conn-pill"><strong>Arwen Smit</strong> · Founder, Red Line</div>
+      <p style="color:rgba(255,255,255,.4);font-size:12px;margin-top:14px;line-height:1.5;font-style:italic">Every connection here is a door into a wider AI community — founders, investors, platform builders — all now aware of ChronoAI and what we're building.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ SLIDE 7: SGINNOVATE + GOV ALIGNMENT ══════════════ -->
+<div class="slide sd">
+  <div class="two-col" style="align-items:start">
+    <div>
+      <div class="ey ey-w">Deep Dive · SGInnovate</div>
+      <h2 class="h2 h2w" style="font-size:clamp(22px,3vw,32px)">Government-Backed. <span class="grad">Student-Focused.</span></h2>
+      <p style="color:rgba(255,255,255,.5);font-size:14px;line-height:1.65;margin-bottom:20px">SGInnovate is Singapore's government-backed deep tech platform. They run hackathons (AAAI Build for Impact), Startup Semester for student founders, and the Deep Dive incubation programme — all targeting students and early-career tech talent.</p>
+      <div class="card" style="margin-bottom:14px">
+        <div style="font-size:12px;font-weight:700;color:var(--blue);text-transform:uppercase;letter-spacing:.08em;margin-bottom:10px">Why SGInnovate Matters</div>
+        <div class="tk-item" style="margin-bottom:10px"><div class="tk-num">1</div><div class="tk-text">Our hackathon gets <strong>published on their platform</strong> — seen by thousands of students and tech community members.</div></div>
+        <div class="tk-item" style="margin-bottom:10px"><div class="tk-num">2</div><div class="tk-text"><strong>Government agency endorsement</strong> gives us instant credibility with universities and institutional partners.</div></div>
+        <div class="tk-item" style="margin-bottom:0"><div class="tk-num">3</div><div class="tk-text">Their audience is <strong>exactly our target</strong> — students, young builders, and vibe coders.</div></div>
+      </div>
+      <div style="padding:5px 14px;border-radius:100px;background:rgba(48,209,88,.1);border:1px solid rgba(48,209,88,.2);display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:700;color:var(--green)">✓ Confirmed · Free partnership</div>
+    </div>
+    <div>
+      <div class="card">
+        <div style="font-size:12px;font-weight:700;color:var(--orange);text-transform:uppercase;letter-spacing:.08em;margin-bottom:12px">Singapore's AI Readiness Push</div>
+        <p style="color:rgba(255,255,255,.6);font-size:13px;line-height:1.7;margin-bottom:14px">Singapore's Budget 2026 puts AI at the centre of national strategy. PM Lawrence Wong announced a <strong style="color:#fff">national AI Council</strong>, expansion of TechSkills Accelerator for mid-career workers, and AI literacy across all institutes of higher learning.</p>
+        <p style="color:rgba(255,255,255,.6);font-size:13px;line-height:1.7;margin-bottom:14px">The government is making it clear: <strong style="color:#fff">every Singaporean must be AI-ready.</strong> ChronoAI's hackathon is perfectly aligned with this national agenda.</p>
+        <p style="color:rgba(255,255,255,.35);font-size:11px;line-height:1.5">Source: NTUC · Singapore Budget 2026</p>
+      </div>
+      <div style="margin-top:12px"><img src="./img/sginnovate.png" alt="SGInnovate" style="height:40px;margin-right:12px;background:rgba(255,255,255,.08);padding:8px 14px;border-radius:10px"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ SLIDE 8: FIRST PROMPT + e27 ══════════════════════ -->
+<div class="slide sd">
+  <div class="two-col" style="align-items:start">
+    <div>
+      <div class="ey ey-w">Deep Dive · First Prompt</div>
+      <h2 class="h2 h2w" style="font-size:clamp(20px,2.5vw,28px)">APAC's Flagship AI Conference</h2>
+      <div class="photo-grid photo-grid-2" style="gap:6px;max-width:100%;margin-bottom:14px">
+        <img src="./img/fp2.png" alt="First Prompt" style="height:160px;border-radius:12px">
+        <img src="./img/fp1.png" alt="First Prompt" style="height:160px;border-radius:12px">
+      </div>
+      <div class="card">
+        <div style="display:flex;gap:20px;margin-bottom:12px">
+          <div style="text-align:center"><strong style="font-size:24px;font-weight:800;color:#fff;display:block">300+</strong><span style="font-size:11px;color:var(--g2)">Attendees</span></div>
+          <div style="text-align:center"><strong style="font-size:24px;font-weight:800;color:#fff;display:block">500+</strong><span style="font-size:11px;color:var(--g2)">Community</span></div>
+          <div style="text-align:center"><strong style="font-size:24px;font-weight:800;color:#fff;display:block">AWS</strong><span style="font-size:11px;color:var(--g2)">Hosted At</span></div>
+        </div>
+        <p class="p-what">Panelists from <strong>Alibaba Cloud, Huawei AI, OpenAI.</strong> Proven AI community with serious turnout. They are selective — our partnership came through a personal coffee chat. They will share with their network as a community partner. <strong>This is free.</strong></p>
+        <div><span class="p-pill">Community Partner</span><span class="p-pill">✓ Confirmed</span></div>
+      </div>
+    </div>
+    <div>
+      <div class="ey ey-w">Deep Dive · e27</div>
+      <h2 class="h2 h2w" style="font-size:clamp(20px,2.5vw,28px)">SEA's Startup Ecosystem Hub</h2>
+      <div style="margin-bottom:14px"><img src="./img/e27.png" alt="e27" style="height:56px;background:#fff;padding:10px 20px;border-radius:12px"></div>
+      <div class="card">
+        <p class="p-what" style="margin-bottom:14px"><strong>Decision makers, founders, and investors</strong> read e27 daily. Founded in 2007, they've been the backbone of SEA's tech ecosystem — connecting startups with investors, media, and talent across the region.</p>
+        <div style="display:flex;gap:20px;margin-bottom:14px">
+          <div style="text-align:center"><strong style="font-size:24px;font-weight:800;color:#fff;display:block">180K</strong><span style="font-size:11px;color:var(--g2)">Newsletter</span></div>
+          <div style="text-align:center"><strong style="font-size:24px;font-weight:800;color:#fff;display:block">SEA</strong><span style="font-size:11px;color:var(--g2)">Coverage</span></div>
+          <div style="text-align:center"><strong style="font-size:24px;font-weight:800;color:#fff;display:block">1000+</strong><span style="font-size:11px;color:var(--g2)">Active Investors</span></div>
+        </div>
+        <p class="p-what"><strong>Dual value:</strong> Community partner for the hackathon AND publishing SoulGarden in their AI Newsletter (180K readership). By working with them, we reach potential investors too. <strong>Both are free.</strong></p>
+        <div><span class="p-pill">Community Partner</span><span class="p-pill">SoulGarden Feature</span><span class="p-pill">✓ Confirmed</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ SLIDE 9: RITESET 2.0 + AURASNAP ═════════════════ -->
+<div class="slide sd">
+  <div class="two-col" style="max-width:900px">
+    <div style="display:flex;flex-direction:column;justify-content:center">
+      <div class="ey ey-w">Product · RiteSet</div>
+      <h2 class="h2 h2w" style="font-size:clamp(24px,3vw,36px)">RiteSet 2.0 <span class="grad">Submitted.</span></h2>
+      <div class="achieved">✓ Target Achieved · App Store Submission</div>
+      <p style="color:rgba(255,255,255,.55);font-size:15px;line-height:1.65;margin-bottom:20px">RiteSet 2.0 build has been submitted to the App Store for approval on 6 March — with branding refresh fully implemented and AI backend logic complete.</p>
+      <div class="card">
+        <div style="font-size:12px;font-weight:700;color:var(--green);text-transform:uppercase;letter-spacing:.08em;margin-bottom:10px">Status</div>
+        <div class="tk-item" style="margin-bottom:8px"><div class="tk-num" style="background:rgba(48,209,88,.15);color:var(--green)">✓</div><div class="tk-text">Branding refresh <strong>complete</strong></div></div>
+        <div class="tk-item" style="margin-bottom:8px"><div class="tk-num" style="background:rgba(48,209,88,.15);color:var(--green)">✓</div><div class="tk-text">AI backend logic <strong>complete</strong></div></div>
+        <div class="tk-item" style="margin-bottom:0"><div class="tk-num" style="background:rgba(48,209,88,.15);color:var(--green)">✓</div><div class="tk-text">Submitted to <strong>App Store for review</strong></div></div>
+      </div>
+    </div>
+    <div style="display:flex;flex-direction:column;justify-content:center">
+      <div class="ey ey-w">Research · AuraSnap</div>
+      <h2 class="h2 h2w" style="font-size:clamp(22px,2.5vw,30px)">Crystal Community Research</h2>
+      <p style="color:rgba(255,255,255,.55);font-size:14px;line-height:1.65;margin-bottom:16px">Initiating research into the crystal community as a potential audience and integration path for AuraSnap — exploring how crystal collectors, wellness practitioners, and spiritual communities engage with tech products.</p>
+      <div class="card">
+        <div style="font-size:12px;font-weight:700;color:var(--purple);text-transform:uppercase;letter-spacing:.08em;margin-bottom:10px">Research Areas</div>
+        <div style="display:flex;flex-wrap:wrap;gap:6px">
+          <span class="option-pill">Crystal collector demographics</span>
+          <span class="option-pill">Community size & platforms</span>
+          <span class="option-pill">Wellness x Tech overlap</span>
+          <span class="option-pill">Influencer landscape</span>
+          <span class="option-pill">Integration opportunities</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ SLIDE 10: HACKATHON — THE OPPORTUNITY ════════════ -->
+<div class="slide sd">
+  <div style="width:100%;max-width:960px">
+    <div class="ey ey-w" style="text-align:center">ChronoAI Inaugural Hackathon</div>
+    <h2 class="h2 h2w" style="text-align:center;margin-bottom:6px">The Opportunity Is <span class="grad">Now.</span></h2>
+    <p class="sub sub-w" style="text-align:center;margin:0 auto 28px">March 27, 2026 · Marina Bay Financial Centre</p>
+
+    <div class="two-col" style="max-width:960px">
+      <div>
+        <div class="card" style="margin-bottom:14px">
+          <div style="font-size:12px;font-weight:700;color:var(--orange);text-transform:uppercase;letter-spacing:.08em;margin-bottom:12px">Why Now</div>
+          <p style="color:rgba(255,255,255,.6);font-size:14px;line-height:1.7">Singapore's AI hackathon scene is exploding — and the events drawing the biggest crowds offer <strong style="color:#fff">zero cash prizes.</strong> OpenClaw: 457 people, $0. Agent Forge: 274 people, $2K credits only.</p>
+          <p style="color:rgba(255,255,255,.6);font-size:14px;line-height:1.7;margin-top:10px">ChronoAI is proposing <strong style="color:#fff">$10,000 USD cash</strong> — the most competitive prize in Singapore's AI hackathon scene this quarter.</p>
+        </div>
+        <div class="card">
+          <div style="font-size:12px;font-weight:700;color:var(--teal);text-transform:uppercase;letter-spacing:.08em;margin-bottom:12px">What We're Building</div>
+          <p style="color:rgba(255,255,255,.6);font-size:14px;line-height:1.7">A full-day <strong style="color:#fff">vibe coding hackathon</strong> — 20 curated builders competing for $10K cash, investor intros, and founding team mentorship. Plus 60 open audience members for demos and networking.</p>
+          <div style="display:flex;gap:16px;margin-top:14px">
+            <div class="hack-stat"><strong>80</strong><span>Target Attendees</span></div>
+            <div class="hack-stat"><strong>$10K</strong><span>Cash Prize</span></div>
+            <div class="hack-stat"><strong>20</strong><span>Curated Builders</span></div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="card" style="border-color:rgba(48,209,88,.2)">
+          <div style="font-size:12px;font-weight:700;color:var(--green);text-transform:uppercase;letter-spacing:.08em;margin-bottom:14px">Already Secured — Before This Proposal Was Written</div>
+          <table class="ptable">
+            <tr><th>Partner</th><th>Status</th><th>What They Bring</th></tr>
+            <tr><td><strong>SGInnovate</strong></td><td><span class="p-status ps-confirmed" style="font-size:10px">✓ Confirmed</span></td><td>Students + SG tech community</td></tr>
+            <tr><td><strong>e27</strong></td><td><span class="p-status ps-confirmed" style="font-size:10px">✓ Confirmed</span></td><td>SEA startups + investor network</td></tr>
+            <tr><td><strong>First Prompt</strong></td><td><span class="p-status ps-confirmed" style="font-size:10px">✓ Confirmed</span></td><td>500+ AI community, AWS alumni</td></tr>
+            <tr><td><strong>ChatandBuild</strong></td><td><span class="p-status ps-progress" style="font-size:10px">In Discussion</span></td><td>AI builders + co-host on Luma</td></tr>
+          </table>
+          <p style="color:rgba(255,255,255,.4);font-size:12px;margin-top:14px;text-align:center;font-style:italic">Partners are ready to activate the moment we have leadership sign-off.</p>
+        </div>
+        <div style="margin-top:14px;padding:16px 20px;background:rgba(191,90,242,.08);border:1px solid rgba(191,90,242,.2);border-radius:16px;text-align:center">
+          <p style="color:rgba(255,255,255,.55);font-size:13px;line-height:1.6">The event also <strong style="color:#fff">showcases ChronoAI's vibe coding culture</strong> — live demos of our product portfolio — positioning us as a builder and leader in Singapore's AI ecosystem.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ SLIDE 11: HACKATHON — DECISIONS NEEDED ═══════════ -->
+<div class="slide sd">
+  <div style="width:100%;max-width:900px">
+    <div class="ey ey-w" style="text-align:center">ChronoAI Inaugural Hackathon</div>
+    <h2 class="h2 h2w" style="text-align:center;max-width:600px;margin:0 auto 8px">What We Need Decided.</h2>
+    <p class="sub sub-w" style="text-align:center;margin:0 auto 28px">3 questions. Without answers, nothing moves.</p>
+
+    <div class="three-col" style="max-width:900px;margin-bottom:20px">
+      <div class="q-card">
+        <div class="q-num">Question 1</div>
+        <div class="q-title">What's the hackathon theme?</div>
+        <div class="q-body" style="margin-bottom:10px">Three globally hot options — all parallel to ChronoAI's identity:</div>
+        <div><span class="option-pill">🤖 AI Agents & Autonomous Systems</span></div>
+        <div><span class="option-pill">💻 Vibe Coding — Build Anything with AI</span></div>
+        <div><span class="option-pill">🎯 Two-track: AI Agents + Vibe Coding</span></div>
+      </div>
+      <div class="q-card">
+        <div class="q-num">Question 2</div>
+        <div class="q-title">OpenClaw or open framework?</div>
+        <div class="q-body">Given recent community concerns around OpenClaw's security posture — do we mandate OpenClaw, open to any AI model, or position vibe coding broadly with OpenClaw as one option?</div>
+      </div>
+      <div class="q-card">
+        <div class="q-num">Question 3</div>
+        <div class="q-title">Are we funding API keys?</div>
+        <div class="q-body">Standard practice in well-run hackathons. Partners have already asked. Decision needed before we can publish the Luma listing.</div>
+      </div>
+    </div>
+
+    <div style="background:linear-gradient(135deg,rgba(0,113,227,.1),rgba(48,209,88,.08));border:1px solid rgba(0,113,227,.2);border-radius:20px;padding:24px 28px;text-align:center">
+      <div style="font-size:13px;font-weight:700;color:var(--blue);text-transform:uppercase;letter-spacing:.1em;margin-bottom:14px">The Moment We Have Answers</div>
+      <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
+        <span style="padding:8px 16px;border-radius:100px;background:rgba(48,209,88,.1);color:var(--green);font-size:13px;font-weight:600">✓ Luma goes live — same day</span>
+        <span style="padding:8px 16px;border-radius:100px;background:rgba(48,209,88,.1);color:var(--green);font-size:13px;font-weight:600">✓ SGInnovate publishes</span>
+        <span style="padding:8px 16px;border-radius:100px;background:rgba(48,209,88,.1);color:var(--green);font-size:13px;font-weight:600">✓ e27 + First Prompt activate</span>
+        <span style="padding:8px 16px;border-radius:100px;background:rgba(48,209,88,.1);color:var(--green);font-size:13px;font-weight:600">✓ University outreach begins</span>
+      </div>
+      <p style="color:rgba(255,255,255,.45);font-size:14px;margin-top:16px;font-style:italic">The groundwork is done. Partners are warm. The community wants this. We just need the green light.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ SLIDE 12: CLOSE ══════════════════════════════════ -->
+<div class="slide sd">
+  <div style="text-align:center;max-width:800px">
+    <div class="ey ey-w" style="justify-content:center">Everything Connects</div>
+    <h2 class="h2 h2w" style="font-size:clamp(32px,4.5vw,56px);text-align:center">Events → Connections →<br>Partnerships → <span class="grad">Community.</span></h2>
+    <p class="sub sub-w" style="text-align:center;margin:12px auto 36px;max-width:480px">Every handshake this week feeds ChronoAI's long-term position as Singapore's AI incubator. We're not just attending events — we're building the foundation.</p>
+    <div class="four-col" style="max-width:800px;margin:0 auto">
+      <div style="text-align:center;padding:20px 12px;background:rgba(255,255,255,.03);border-radius:16px">
+        <div style="font-size:26px;margin-bottom:8px">🤝</div>
+        <div style="font-size:28px;font-weight:800;color:#fff">4</div>
+        <div style="font-size:11px;color:var(--g2)">Partners Secured</div>
+      </div>
+      <div style="text-align:center;padding:20px 12px;background:rgba(255,255,255,.03);border-radius:16px">
+        <div style="font-size:26px;margin-bottom:8px">🎤</div>
+        <div style="font-size:28px;font-weight:800;color:#fff">2</div>
+        <div style="font-size:11px;color:var(--g2)">Events Attended</div>
+      </div>
+      <div style="text-align:center;padding:20px 12px;background:rgba(255,255,255,.03);border-radius:16px">
+        <div style="font-size:26px;margin-bottom:8px">🚀</div>
+        <div style="font-size:28px;font-weight:800;color:#fff">✓</div>
+        <div style="font-size:11px;color:var(--g2)">RiteSet Submitted</div>
+      </div>
+      <div style="text-align:center;padding:20px 12px;background:rgba(255,255,255,.03);border-radius:16px">
+        <div style="font-size:26px;margin-bottom:8px">💰</div>
+        <div style="font-size:28px;font-weight:800;color:#fff">$0</div>
+        <div style="font-size:11px;color:var(--g2)">Partnership Cost</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>
+
+<script>
+const slides=document.querySelectorAll('.slide'),total=slides.length;
+let cur=0,anim=false;
+const dots=document.getElementById('navDots'),prog=document.getElementById('progress'),ctr=document.getElementById('counter');
+slides.forEach((_,i)=>{const d=document.createElement('button');d.className='dot'+(i===0?' active':'');d.onclick=()=>goTo(i);dots.appendChild(d)});
+function ui(){document.querySelectorAll('.dot').forEach((d,i)=>d.classList.toggle('active',i===cur));prog.style.width=((cur+1)/total*100)+'%';ctr.textContent=(cur+1)+' / '+total}
+function goTo(i){if(anim||i===cur)return;anim=true;slides[cur].classList.remove('active');cur=i;slides[cur].classList.add('active');ui();setTimeout(()=>anim=false,550)}
+function go(d){goTo((cur+d+total)%total)}
+document.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key==='ArrowDown')go(1);if(e.key==='ArrowLeft'||e.key==='ArrowUp')go(-1)});
+ui();
+</script>
+</body>
+</html>
