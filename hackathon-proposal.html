@@ -13,6 +13,9 @@ body{font-family:'Inter',-apple-system,sans-serif;-webkit-font-smoothing:antiali
 
 a.back-link{position:fixed;top:20px;left:20px;padding:8px 16px;border-radius:100px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);color:rgba(255,255,255,.6);font-size:13px;font-weight:600;text-decoration:none;transition:all .2s;z-index:100}
 a.back-link:hover{background:rgba(255,255,255,.12);color:#fff}
+.lang-toggle{position:fixed;top:20px;right:20px;z-index:300;display:flex;background:rgba(255,255,255,.07);backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,.1);border-radius:100px;overflow:hidden}
+.lang-toggle button{background:none;border:none;color:rgba(255,255,255,.45);font-size:12px;font-weight:700;padding:6px 14px;cursor:pointer;transition:all .2s;font-family:inherit;letter-spacing:.02em}
+.lang-toggle button.active{background:rgba(255,255,255,.12);color:#fff}
 
 .wrap{max-width:820px;margin:0 auto;padding:60px 28px 80px}
 
@@ -84,57 +87,58 @@ a.back-link:hover{background:rgba(255,255,255,.12);color:#fff}
 <body>
 
 <a href="./index.html" class="back-link">← Back to Slides</a>
+<div class="lang-toggle" id="langToggle"><button class="active" onclick="setLang('en')">EN</button><button onclick="setLang('zh')">中文</button></div>
 
 <div class="wrap">
 
 <!-- HERO -->
 <div class="hero">
-  <div class="hero-tag">Hackathon Proposal · March 2026</div>
-  <h1>ChronoAI <span>Vibe-Coding Hackathon</span></h1>
-  <p class="hero-sub">A full-day, in-person hackathon where 20 builders compete live using AI — with $10K USD cash on the line. The biggest cash prize for any AI hackathon in Singapore.</p>
+  <div class="hero-tag" data-t="1">Hackathon Proposal · March 2026</div>
+  <h1 data-t="2">ChronoAI <span>Vibe-Coding Hackathon</span></h1>
+  <p class="hero-sub" data-t="3">A full-day, in-person hackathon where 20 builders compete live using AI — with $10K USD cash on the line. The biggest cash prize for any AI hackathon in Singapore.</p>
   <div class="hero-meta">
-    <span class="hero-pill"><strong>27 Mar 2026</strong> · Proposed</span>
-    <span class="hero-pill"><strong>$10,000 USD</strong> · Cash Prize</span>
-    <span class="hero-pill"><strong>80 People</strong> · Target</span>
-    <span class="hero-pill"><strong>Venue TBD</strong></span>
+    <span class="hero-pill" data-t="81"><strong>27 Mar 2026</strong> · Proposed</span>
+    <span class="hero-pill" data-t="82"><strong>$10,000 USD</strong> · Cash Prize</span>
+    <span class="hero-pill" data-t="83"><strong>80 People</strong> · Target</span>
+    <span class="hero-pill" data-t="84"><strong>Venue TBD</strong></span>
   </div>
 </div>
 
 <!-- EXECUTIVE SUMMARY -->
 <div class="sec">
-  <div class="sec-label" style="color:var(--teal)">Executive Summary</div>
-  <h2>What This Is — and Why It Matters</h2>
-  <p><strong>AI hackathons in Singapore are blowing up.</strong> OpenClaw had 457 attendees, Agent Forge had 274. But neither offered real cash — just credits and swag. We're offering <strong>$10,000 USD in actual cash</strong>, which instantly makes this the most attractive AI hackathon in the market.</p>
-  <p>This isn't just an event — it's a <strong>brand play</strong>. It puts ChronoAI in front of Singapore's entire AI community in a single day: students, builders, founders, investors, and press. All 3 confirmed partners will amplify it to <strong>190K+ people</strong> before anyone walks through the door.</p>
-  <p>Total cost for partner acquisition: <strong>$0</strong>. Every partnership was secured through personal outreach.</p>
+  <div class="sec-label" style="color:var(--teal)" data-t="4">Executive Summary</div>
+  <h2 data-t="5">What This Is — and Why It Matters</h2>
+  <p data-t="6"><strong>AI hackathons in Singapore are blowing up.</strong> OpenClaw had 457 attendees, Agent Forge had 274. But neither offered real cash — just credits and swag. We're offering <strong>$10,000 USD in actual cash</strong>, which instantly makes this the most attractive AI hackathon in the market.</p>
+  <p data-t="7">This isn't just an event — it's a <strong>brand play</strong>. It puts ChronoAI in front of Singapore's entire AI community in a single day: students, builders, founders, investors, and press. All 3 confirmed partners will amplify it to <strong>190K+ people</strong> before anyone walks through the door.</p>
+  <p data-t="8">Total cost for partner acquisition: <strong>$0</strong>. Every partnership was secured through personal outreach.</p>
 </div>
 
 <!-- THE FORMAT -->
 <div class="sec">
-  <div class="sec-label" style="color:var(--blue)">The Format</div>
-  <h2>How It Works</h2>
+  <div class="sec-label" style="color:var(--blue)" data-t="9">The Format</div>
+  <h2 data-t="10">How It Works</h2>
 
   <div class="stats">
-    <div class="stat"><strong style="color:var(--teal)">80</strong><span>People in the Room</span></div>
-    <div class="stat"><strong style="color:var(--blue)">20</strong><span>Vibe-Coders Competing</span></div>
-    <div class="stat"><strong style="color:var(--green)">60</strong><span>Community Attendees</span></div>
-    <div class="stat"><strong style="color:var(--orange)">$10K</strong><span>Cash Prize (USD)</span></div>
+    <div class="stat"><strong style="color:var(--teal)">80</strong><span data-t="11">People in the Room</span></div>
+    <div class="stat"><strong style="color:var(--blue)">20</strong><span data-t="12">Vibe-Coders Competing</span></div>
+    <div class="stat"><strong style="color:var(--green)">60</strong><span data-t="13">Community Attendees</span></div>
+    <div class="stat"><strong style="color:var(--orange)">$10K</strong><span data-t="14">Cash Prize (USD)</span></div>
   </div>
 
   <div class="two-col">
     <div class="card">
-      <div class="card-title" style="color:var(--blue)">Vibe-Coders · 20 people</div>
-      <div class="card-body">Selected builders compete live for <strong>$10K cash, investor introductions, and mentorship with our founding team</strong>. They build real products using AI in real time — the audience watches it happen.</div>
+      <div class="card-title" style="color:var(--blue)" data-t="15">Vibe-Coders · 20 people</div>
+      <div class="card-body" data-t="16">Selected builders compete live for <strong>$10K cash, investor introductions, and mentorship with our founding team</strong>. They build real products using AI in real time — the audience watches it happen.</div>
     </div>
     <div class="card">
-      <div class="card-title" style="color:var(--green)">Community · 60 people</div>
-      <div class="card-body">Founders, investors, students, and AI enthusiasts come to <strong>watch, network, see the demos, and experience it all live</strong>. They leave knowing who ChronoAI is.</div>
+      <div class="card-title" style="color:var(--green)" data-t="17">Community · 60 people</div>
+      <div class="card-body" data-t="18">Founders, investors, students, and AI enthusiasts come to <strong>watch, network, see the demos, and experience it all live</strong>. They leave knowing who ChronoAI is.</div>
     </div>
   </div>
 
   <div class="card" style="border-color:rgba(191,90,242,.15);margin-top:4px">
-    <div class="card-title" style="color:var(--purple)">Prizes</div>
-    <div class="card-body">
+    <div class="card-title" style="color:var(--purple)" data-t="19">Prizes</div>
+    <div class="card-body" data-t="20">
       <strong>1st Place:</strong> Cash prize (amount TBD from $10K pool) + investor intros + founding team mentorship<br>
       <strong>2nd Place:</strong> Cash prize + mentorship<br>
       <strong>3rd Place:</strong> Cash prize<br>
@@ -145,15 +149,15 @@ a.back-link:hover{background:rgba(255,255,255,.12);color:#fff}
 
 <!-- PARTNERS -->
 <div class="sec">
-  <div class="sec-label" style="color:var(--green)">Confirmed Partners</div>
-  <h2>3 Partners Locked In. $0 Cost.</h2>
-  <p>Every partner was secured through personal conversations — no cold emails, no sponsorship budget. These are selective organisations that said yes because they believe in what ChronoAI is building.</p>
+  <div class="sec-label" style="color:var(--green)" data-t="21">Confirmed Partners</div>
+  <h2 data-t="22">3 Partners Locked In. $0 Cost.</h2>
+  <p data-t="23">Every partner was secured through personal conversations — no cold emails, no sponsorship budget. These are selective organisations that said yes because they believe in what ChronoAI is building.</p>
 
   <div class="partner-row" style="border-color:rgba(48,209,88,.2)">
     <div class="partner-icon" style="background:rgba(48,209,88,.1)">🏛️</div>
     <div class="partner-info">
       <div class="partner-name">SGInnovate</div>
-      <div class="partner-detail">Singapore government deep-tech agency. <strong>Lists our hackathon on their community board</strong> to 190K+ members. Government stamp of approval — ChronoAI appears next to national AI programmes.</div>
+      <div class="partner-detail" data-t="24">Singapore government deep-tech agency. <strong>Lists our hackathon on their community board</strong> to 190K+ members. Government stamp of approval — ChronoAI appears next to national AI programmes.</div>
     </div>
     <div class="partner-badge" style="background:rgba(48,209,88,.15);color:var(--green)">✓ Confirmed</div>
   </div>
@@ -162,7 +166,7 @@ a.back-link:hover{background:rgba(255,255,255,.12);color:#fff}
     <div class="partner-icon" style="background:rgba(0,113,227,.1)">⚡</div>
     <div class="partner-info">
       <div class="partner-name">First Prompt</div>
-      <div class="partner-detail">Active AI community in Singapore with 500+ members. Past speakers from Alibaba Cloud, Huawei AI, OpenAI. <strong>Shares our hackathon across their community.</strong></div>
+      <div class="partner-detail" data-t="25">Active AI community in Singapore with 500+ members. Past speakers from Alibaba Cloud, Huawei AI, OpenAI. <strong>Shares our hackathon across their community.</strong></div>
     </div>
     <div class="partner-badge" style="background:rgba(48,209,88,.15);color:var(--green)">✓ Confirmed</div>
   </div>
@@ -171,7 +175,7 @@ a.back-link:hover{background:rgba(255,255,255,.12);color:#fff}
     <div class="partner-icon" style="background:rgba(255,159,10,.1)">📰</div>
     <div class="partner-info">
       <div class="partner-name">e27</div>
-      <div class="partner-detail">Southeast Asia's biggest startup platform. <strong>Puts our hackathon in their 180K-reader newsletter</strong> reaching founders, investors, and decision-makers across APAC. 1,770 active investors on the platform.</div>
+      <div class="partner-detail" data-t="26">Southeast Asia's biggest startup platform. <strong>Puts our hackathon in their 180K-reader newsletter</strong> reaching founders, investors, and decision-makers across APAC. 1,770 active investors on the platform.</div>
     </div>
     <div class="partner-badge" style="background:rgba(48,209,88,.15);color:var(--green)">✓ Confirmed</div>
   </div>
@@ -180,7 +184,7 @@ a.back-link:hover{background:rgba(255,255,255,.12);color:#fff}
     <div class="partner-icon" style="background:rgba(191,90,242,.1)">💬</div>
     <div class="partner-info">
       <div class="partner-name">ChatandBuild</div>
-      <div class="partner-detail">AI builders + women-in-tech community. Currently discussing co-hosting.</div>
+      <div class="partner-detail" data-t="27">AI builders + women-in-tech community. Currently discussing co-hosting.</div>
     </div>
     <div class="partner-badge" style="background:rgba(255,159,10,.15);color:var(--orange)">In Discussion</div>
   </div>
@@ -188,9 +192,9 @@ a.back-link:hover{background:rgba(255,255,255,.12);color:#fff}
 
 <!-- JUDGES & MENTORS -->
 <div class="sec">
-  <div class="sec-label" style="color:var(--purple)">Judges & Mentors</div>
-  <h2>Industry Thought Leaders</h2>
-  <p>On top of community partners, I'm lining up well-known people in AI and business to judge and mentor — giving the hackathon real credibility.</p>
+  <div class="sec-label" style="color:var(--purple)" data-t="28">Judges & Mentors</div>
+  <h2 data-t="29">Industry Thought Leaders</h2>
+  <p data-t="30">On top of community partners, I'm lining up well-known people in AI and business to judge and mentor — giving the hackathon real credibility.</p>
 
   <div class="two-col">
     <div>
@@ -199,30 +203,30 @@ a.back-link:hover{background:rgba(255,255,255,.12);color:#fff}
           <div class="card-title" style="margin:0">Wendy Wang</div>
           <span style="font-size:10px;font-weight:700;padding:3px 8px;border-radius:100px;background:rgba(48,209,88,.12);color:var(--green)">✓ Confirmed</span>
         </div>
-        <div class="card-body">ChronoAI Business Director & AI keynote speaker. Judging from a <strong>go-to-market</strong> perspective.</div>
+        <div class="card-body" data-t="31">ChronoAI Business Director & AI keynote speaker. Judging from a <strong>go-to-market</strong> perspective.</div>
       </div>
       <div class="card" style="border-color:rgba(48,209,88,.15)">
         <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
           <div class="card-title" style="margin:0">Dannick Young</div>
           <span style="font-size:10px;font-weight:700;padding:3px 8px;border-radius:100px;background:rgba(48,209,88,.12);color:var(--green)">✓ Confirmed</span>
         </div>
-        <div class="card-body">ChronoAI Head of Design. Judging from a <strong>design & UX</strong> perspective.</div>
+        <div class="card-body" data-t="32">ChronoAI Head of Design. Judging from a <strong>design & UX</strong> perspective.</div>
       </div>
     </div>
     <div>
       <div class="card" style="border-color:rgba(255,159,10,.15);border-style:dashed">
         <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
-          <div class="card-title" style="margin:0">Lion Sim</div>
+          <div class="card-title" style="margin:0">Lionel Sim</div>
           <span style="font-size:10px;font-weight:700;padding:3px 8px;border-radius:100px;background:rgba(255,159,10,.12);color:var(--orange)">Pending</span>
         </div>
-        <div class="card-body">Organised one of Singapore's biggest OpenClaw hackathons. Deep expertise in running large AI events.</div>
+        <div class="card-body" data-t="33">Organised one of Singapore's biggest OpenClaw hackathons. Deep expertise in running large AI events.</div>
       </div>
       <div class="card" style="border-color:rgba(255,159,10,.15);border-style:dashed">
         <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
-          <div class="card-title" style="margin:0">Benjy Wong</div>
+          <div class="card-title" style="margin:0">Benjamin Wong</div>
           <span style="font-size:10px;font-weight:700;padding:3px 8px;border-radius:100px;background:rgba(255,159,10,.12);color:var(--orange)">Pending</span>
         </div>
-        <div class="card-body">Founder & CEO. Well-known AI keynote speaker — people show up when he's on the bill.</div>
+        <div class="card-body" data-t="34">Founder & CEO. Well-known AI keynote speaker — people show up when he's on the bill.</div>
       </div>
     </div>
   </div>
@@ -230,33 +234,33 @@ a.back-link:hover{background:rgba(255,255,255,.12);color:#fff}
 
 <!-- SUCCESS METRICS -->
 <div class="sec">
-  <div class="sec-label" style="color:var(--green)">Success Metrics</div>
-  <h2>What I'm Targeting — Hard Numbers</h2>
-  <p>Every metric here is measurable. I'll track these before, during, and after the event.</p>
+  <div class="sec-label" style="color:var(--green)" data-t="35">Success Metrics</div>
+  <h2 data-t="36">What I'm Targeting — Hard Numbers</h2>
+  <p data-t="37">Every metric here is measurable. I'll track these before, during, and after the event.</p>
 
   <div style="background:var(--card);border:1px solid var(--border);border-radius:14px;padding:6px 14px">
     <div class="metric-row" style="background:rgba(48,209,88,.04);border-radius:8px;border:1px solid rgba(48,209,88,.08)">
-      <span class="metric-label">Total Registrations</span>
+      <span class="metric-label" data-t="38">Total Registrations</span>
       <strong class="metric-value" style="color:var(--green)">150+</strong>
     </div>
     <div class="metric-row" style="background:rgba(0,113,227,.04);border-radius:8px;border:1px solid rgba(0,113,227,.08)">
-      <span class="metric-label">Day-of Attendees</span>
+      <span class="metric-label" data-t="39">Day-of Attendees</span>
       <strong class="metric-value" style="color:var(--blue)">80</strong>
     </div>
     <div class="metric-row" style="background:rgba(191,90,242,.04);border-radius:8px;border:1px solid rgba(191,90,242,.08)">
-      <span class="metric-label">Projects Submitted</span>
+      <span class="metric-label" data-t="40">Projects Submitted</span>
       <strong class="metric-value" style="color:var(--purple)">10–15</strong>
     </div>
     <div class="metric-row" style="background:rgba(255,159,10,.04);border-radius:8px;border:1px solid rgba(255,159,10,.08)">
-      <span class="metric-label">People Reached via Partners</span>
+      <span class="metric-label" data-t="41">People Reached via Partners</span>
       <strong class="metric-value" style="color:var(--orange)">10,000+</strong>
     </div>
     <div class="metric-row" style="background:rgba(100,210,255,.04);border-radius:8px;border:1px solid rgba(100,210,255,.08)">
-      <span class="metric-label">New Contacts / Leads</span>
+      <span class="metric-label" data-t="42">New Contacts / Leads</span>
       <strong class="metric-value" style="color:var(--teal)">50+</strong>
     </div>
     <div class="metric-row" style="background:rgba(255,55,95,.04);border-radius:8px;border:1px solid rgba(255,55,95,.08)">
-      <span class="metric-label">Press / Articles</span>
+      <span class="metric-label" data-t="43">Press / Articles</span>
       <strong class="metric-value" style="color:var(--pink)">2–3</strong>
     </div>
   </div>
@@ -264,9 +268,9 @@ a.back-link:hover{background:rgba(255,255,255,.12);color:#fff}
 
 <!-- COMPETITIVE LANDSCAPE -->
 <div class="sec">
-  <div class="sec-label" style="color:var(--orange)">Why We Win</div>
-  <h2>The Singapore AI Hackathon Landscape</h2>
-  <p>There's demand — but nobody is offering real cash. That's our edge.</p>
+  <div class="sec-label" style="color:var(--orange)" data-t="44">Why We Win</div>
+  <h2 data-t="45">The Singapore AI Hackathon Landscape</h2>
+  <p data-t="46">There's demand — but nobody is offering real cash. That's our edge.</p>
 
   <div class="three-col">
     <div class="card" style="text-align:center;border-color:rgba(255,255,255,.06)">
@@ -292,43 +296,43 @@ a.back-link:hover{background:rgba(255,255,255,.12);color:#fff}
 
 <!-- TIMELINE -->
 <div class="sec">
-  <div class="sec-label" style="color:var(--teal)">Proposed Timeline</div>
-  <h2>From Approval to Event Day</h2>
+  <div class="sec-label" style="color:var(--teal)" data-t="47">Proposed Timeline</div>
+  <h2 data-t="48">From Approval to Event Day</h2>
 
   <div style="padding-left:4px">
     <div class="timeline-item">
       <div class="timeline-dot" style="background:var(--orange)"></div><div class="timeline-line"></div>
       <div class="timeline-content">
         <div class="timeline-date" style="color:var(--orange)">Week of 5 Mar · Now</div>
-        <div class="timeline-text"><strong>Get 3 decisions from leadership</strong> (theme, framework, API keys). Event page designed and ready to publish.</div>
+        <div class="timeline-text" data-t="49"><strong>Get 3 decisions from leadership</strong> (theme, framework, API keys). Event page designed and ready to publish.</div>
       </div>
     </div>
     <div class="timeline-item">
       <div class="timeline-dot" style="background:var(--blue)"></div><div class="timeline-line"></div>
       <div class="timeline-content">
         <div class="timeline-date" style="color:var(--blue)">Week of 10 Mar</div>
-        <div class="timeline-text"><strong>Event page goes live.</strong> SGInnovate lists it, e27 includes it in newsletter, First Prompt shares to community. University outreach begins.</div>
+        <div class="timeline-text" data-t="50"><strong>Event page goes live.</strong> SGInnovate lists it, e27 includes it in newsletter, First Prompt shares to community. University outreach begins.</div>
       </div>
     </div>
     <div class="timeline-item">
       <div class="timeline-dot" style="background:var(--teal)"></div><div class="timeline-line"></div>
       <div class="timeline-content">
         <div class="timeline-date" style="color:var(--teal)">Week of 17 Mar</div>
-        <div class="timeline-text"><strong>Registration push.</strong> Social media campaign, partner amplification, direct outreach to AI communities. Venue confirmed and logistics finalised.</div>
+        <div class="timeline-text" data-t="51"><strong>Registration push.</strong> Social media campaign, partner amplification, direct outreach to AI communities. Venue confirmed and logistics finalised.</div>
       </div>
     </div>
     <div class="timeline-item">
       <div class="timeline-dot" style="background:var(--purple)"></div><div class="timeline-line"></div>
       <div class="timeline-content">
         <div class="timeline-date" style="color:var(--purple)">Week of 24 Mar</div>
-        <div class="timeline-text"><strong>Final prep week.</strong> Participant screening, judge briefing, run-of-show finalised, swag and materials ready.</div>
+        <div class="timeline-text" data-t="52"><strong>Final prep week.</strong> Participant screening, judge briefing, run-of-show finalised, swag and materials ready.</div>
       </div>
     </div>
     <div class="timeline-item">
       <div class="timeline-dot" style="background:var(--green)"></div>
       <div class="timeline-content">
         <div class="timeline-date" style="color:var(--green)">27 Mar · Event Day</div>
-        <div class="timeline-text"><strong>ChronoAI Vibe-Coding Hackathon.</strong> Full-day event. 20 vibe-coders compete, 60 community members watch and network. Live demos, judging, prizes awarded.</div>
+        <div class="timeline-text" data-t="53"><strong>ChronoAI Vibe-Coding Hackathon.</strong> Full-day event. 20 vibe-coders compete, 60 community members watch and network. Live demos, judging, prizes awarded.</div>
       </div>
     </div>
   </div>
@@ -336,85 +340,196 @@ a.back-link:hover{background:rgba(255,255,255,.12);color:#fff}
 
 <!-- BUDGET ESTIMATE -->
 <div class="sec">
-  <div class="sec-label" style="color:var(--pink)">Budget Estimate</div>
-  <h2>What We Need to Spend</h2>
+  <div class="sec-label" style="color:var(--pink)" data-t="54">Budget Estimate</div>
+  <h2 data-t="55">What We Need to Spend</h2>
 
   <div style="background:var(--card);border:1px solid var(--border);border-radius:14px;padding:6px 14px">
     <div class="metric-row">
-      <span class="metric-label">Prize Pool</span>
+      <span class="metric-label" data-t="56">Prize Pool</span>
       <strong class="metric-value" style="color:var(--green)">$10,000</strong>
     </div>
     <div class="metric-row">
-      <span class="metric-label">Venue Rental</span>
+      <span class="metric-label" data-t="57">Venue Rental</span>
       <strong class="metric-value" style="color:var(--blue)">TBD</strong>
     </div>
     <div class="metric-row">
-      <span class="metric-label">F&B (80 people, full day)</span>
+      <span class="metric-label" data-t="58">F&amp;B (80 people, full day)</span>
       <strong class="metric-value" style="color:var(--teal)">TBD</strong>
     </div>
     <div class="metric-row">
-      <span class="metric-label">API Keys / Compute Credits</span>
+      <span class="metric-label" data-t="59">API Keys / Compute Credits</span>
       <strong class="metric-value" style="color:var(--orange)">TBD</strong>
     </div>
     <div class="metric-row">
-      <span class="metric-label">Swag & Materials</span>
+      <span class="metric-label" data-t="60">Swag &amp; Materials</span>
       <strong class="metric-value" style="color:var(--purple)">TBD</strong>
     </div>
     <div class="metric-row" style="border-top:1px solid var(--border);padding-top:14px;margin-top:6px">
-      <span class="metric-label"><strong style="color:#fff">Partner Acquisition Cost</strong></span>
+      <span class="metric-label" data-t="61"><strong style="color:#fff">Partner Acquisition Cost</strong></span>
       <strong class="metric-value" style="color:var(--green)">$0</strong>
     </div>
   </div>
-  <p style="margin-top:10px;font-size:13px;color:rgba(255,255,255,.35)">Note: Venue and F&B costs depend on location. API key costs depend on Decision 3 from leadership. All partner outreach and promotion is covered at zero cost through confirmed partnerships.</p>
+  <p style="margin-top:10px;font-size:13px;color:rgba(255,255,255,.35)" data-t="62">Note: Venue and F&amp;B costs depend on location. API key costs depend on Decision 3 from leadership. All partner outreach and promotion is covered at zero cost through confirmed partnerships.</p>
 </div>
 
 <!-- DECISIONS NEEDED -->
 <div class="sec">
-  <div class="sec-label" style="color:var(--orange)">Decisions Needed</div>
-  <h2>3 Things I Need to Launch</h2>
-  <p>Everything else is ready. Partners are waiting. I just need a yes on these three.</p>
+  <div class="sec-label" style="color:var(--orange)" data-t="63">Decisions Needed</div>
+  <h2 data-t="64">3 Things I Need to Launch</h2>
+  <p data-t="65">Everything else is ready. Partners are waiting. I just need a yes on these three.</p>
 
   <div class="decision-card">
     <div class="decision-num">Decision 1</div>
-    <div class="decision-q">What's the hackathon theme?</div>
-    <div class="decision-body" style="margin-bottom:8px">Three options that are trending in the AI community right now:</div>
-    <span class="pill">🤖 AI Agents — build autonomous agents</span>
-    <span class="pill">💻 Vibe Coding — build anything using AI-assisted coding</span>
-    <span class="pill">🎯 Two-track — offer both, participants choose</span>
+    <div class="decision-q" data-t="66">What's the hackathon theme?</div>
+    <div class="decision-body" style="margin-bottom:8px" data-t="67">Three options that are trending in the AI community right now:</div>
+    <span class="pill" data-t="85">🤖 AI Agents — build autonomous agents</span>
+    <span class="pill" data-t="86">💻 Vibe Coding — build anything using AI-assisted coding</span>
+    <span class="pill" data-t="87">🎯 Two-track — offer both, participants choose</span>
   </div>
 
   <div class="decision-card">
     <div class="decision-num">Decision 2</div>
-    <div class="decision-q">OpenClaw or open framework?</div>
-    <div class="decision-body">Some people have concerns about OpenClaw's security. Options: require OpenClaw, allow any AI tool, or offer vibe coding with OpenClaw as one option.</div>
+    <div class="decision-q" data-t="68">OpenClaw or open framework?</div>
+    <div class="decision-body" data-t="69">Some people have concerns about OpenClaw's security. Options: require OpenClaw, allow any AI tool, or offer vibe coding with OpenClaw as one option.</div>
   </div>
 
   <div class="decision-card">
     <div class="decision-num">Decision 3</div>
-    <div class="decision-q">Are we funding API keys for participants?</div>
-    <div class="decision-body">Most competitive hackathons provide API credits. Partners have already asked about this. I need to know before the event page goes live.</div>
+    <div class="decision-q" data-t="70">Are we funding API keys for participants?</div>
+    <div class="decision-body" data-t="71">Most competitive hackathons provide API credits. Partners have already asked about this. I need to know before the event page goes live.</div>
   </div>
 </div>
 
 <!-- CTA -->
 <div class="cta-box">
-  <h2>Once I Get the <span style="background:linear-gradient(90deg,var(--blue),var(--teal),var(--green));-webkit-background-clip:text;-webkit-text-fill-color:transparent">Go-Ahead</span></h2>
-  <p>All 3 partners are standing by. I can activate everything the same day I get approval.</p>
+  <h2 data-t="72">Once I Get the <span style="background:linear-gradient(90deg,var(--blue),var(--teal),var(--green));-webkit-background-clip:text;-webkit-text-fill-color:transparent">Go-Ahead</span></h2>
+  <p data-t="73">All 3 partners are standing by. I can activate everything the same day I get approval.</p>
   <div class="cta-pills">
-    <span class="cta-pill">✓ Event page goes live — same day</span>
-    <span class="cta-pill">✓ SGInnovate posts to 190K+ members</span>
-    <span class="cta-pill">✓ e27 adds to 180K newsletter</span>
-    <span class="cta-pill">✓ First Prompt shares to 500+ community</span>
-    <span class="cta-pill">✓ University outreach starts immediately</span>
+    <span class="cta-pill" data-t="74">✓ Event page goes live — same day</span>
+    <span class="cta-pill" data-t="75">✓ SGInnovate posts to 190K+ members</span>
+    <span class="cta-pill" data-t="76">✓ e27 adds to 180K newsletter</span>
+    <span class="cta-pill" data-t="77">✓ First Prompt shares to 500+ community</span>
+    <span class="cta-pill" data-t="78">✓ University outreach starts immediately</span>
   </div>
 </div>
 
 <div class="footer">
-  <strong>Prepared by Nicholas</strong> · ChronoAI Marketing & Partnerships<br>
-  March 2026
+  <span data-t="79"><strong>Prepared by Nicholas</strong> · ChronoAI Marketing & Partnerships</span><br>
+  <span data-t="80">March 2026</span>
 </div>
 
 </div>
+
+<script>
+const zh={
+1:'黑客松提案 · 2026年3月',
+2:'ChronoAI <span>Vibe-Coding 黑客松</span>',
+3:'一场全天、线下黑客松，20位开发者现场使用AI竞技——争夺1万美元现金奖金。新加坡AI黑客松中最高的现金奖励。',
+4:'执行摘要',
+5:'这是什么——为什么重要',
+6:'<strong>新加坡的AI黑客松正在爆发式增长。</strong>OpenClaw有457名参与者，Agent Forge有274名。但两者都没有提供真金白银——只有积分和赠品。我们提供<strong>1万美元现金</strong>，这立即使我们成为市场上最具吸引力的AI黑客松。',
+7:'这不仅仅是一场活动——这是一次<strong>品牌营销</strong>。它让ChronoAI在一天之内出现在新加坡整个AI社区面前：学生、开发者、创始人、投资人和媒体。3个已确认的合作伙伴将在活动开始前就将信息传播给<strong>19万+人</strong>。',
+8:'合作伙伴获取总成本：<strong>$0</strong>。每个合作关系都是通过个人沟通建立的。',
+9:'活动形式',
+10:'活动如何运作',
+11:'现场参与人数',
+12:'Vibe-Coder参赛者',
+13:'社区观众',
+14:'现金奖金（美元）',
+15:'Vibe-Coder · 20人',
+16:'精选开发者现场竞争<strong>1万美元现金、投资人介绍以及与创始团队的指导</strong>。他们用AI实时构建真实产品——观众亲眼见证这一切的发生。',
+17:'社区 · 60人',
+18:'创始人、投资人、学生和AI爱好者来<strong>观看、社交、观摩演示并现场体验</strong>。他们离开时已经知道ChronoAI是谁。',
+19:'奖项',
+20:'<strong>第一名：</strong>现金奖金（金额待定，来自1万美元奖金池）+ 投资人介绍 + 创始团队指导<br><strong>第二名：</strong>现金奖金 + 指导<br><strong>第三名：</strong>现金奖金<br><strong>所有参与者：</strong>ChronoAI周边、社区权限、社交机会',
+21:'已确认的合作伙伴',
+22:'锁定3个合作伙伴。成本$0。',
+23:'每个合作伙伴都是通过个人对话达成的——没有冷邮件，没有赞助预算。这些都是有选择性的机构，他们之所以答应，是因为他们相信ChronoAI正在构建的东西。',
+24:'新加坡政府深科技机构。<strong>在其社区公告板上发布我们的黑客松</strong>，面向19万+成员。政府认可——ChronoAI与国家AI项目并列展示。',
+25:'新加坡活跃的AI社区，500+成员。过去的演讲嘉宾来自阿里云、华为AI、OpenAI。<strong>在其社区中分享我们的黑客松。</strong>',
+26:'东南亚最大的创业平台。<strong>将我们的黑客松放入其18万读者的通讯中</strong>，覆盖亚太地区的创始人、投资人和决策者。平台上有1,770名活跃投资人。',
+27:'AI开发者 + 女性科技社区。目前正在讨论联合举办。',
+28:'评委与导师',
+29:'行业意见领袖',
+30:'除了社区合作伙伴外，我正在邀请AI和商业领域的知名人士担任评委和导师——赋予黑客松真正的公信力。',
+31:'ChronoAI商业总监及AI主题演讲者。从<strong>市场推广</strong>角度进行评审。',
+32:'ChronoAI设计主管。从<strong>设计与用户体验</strong>角度进行评审。',
+33:'组织了新加坡最成功的OpenClaw黑客松之一。在大型AI活动运营方面有深厚经验。',
+34:'创始人兼CEO。知名AI主题演讲者——他在场时观众就会来。',
+35:'成功指标',
+36:'我的目标——硬数据',
+37:'这里的每个指标都可以衡量。我将在活动前、中、后进行跟踪。',
+38:'总报名人数',
+39:'当天到场人数',
+40:'提交的项目数',
+41:'通过合作伙伴触达的人数',
+42:'新联系人 / 潜在客户',
+43:'媒体报道 / 文章',
+44:'我们的优势',
+45:'新加坡AI黑客松格局',
+46:'市场有需求——但没人提供真金白银。这就是我们的优势。',
+47:'拟议时间线',
+48:'从批准到活动日',
+49:'<strong>获得管理层3个决定</strong>（主题、框架、API密钥）。活动页面已设计好，随时可以发布。',
+50:'<strong>活动页面上线。</strong>SGInnovate发布、e27收入通讯、First Prompt分享至社区。大学推广开始。',
+51:'<strong>报名推广。</strong>社交媒体推广、合作伙伴扩大传播、直接向AI社区推广。场地确认，后勤安排完毕。',
+52:'<strong>最后准备周。</strong>参与者筛选、评委简报、活动流程确定、周边和物料准备就绪。',
+53:'<strong>ChronoAI Vibe-Coding 黑客松。</strong>全天活动。20位Vibe-coder竞赛，60位社区成员观看并社交。现场演示、评审、颁奖。',
+54:'预算估算',
+55:'我们需要花多少',
+56:'奖金池',
+57:'场地租赁',
+58:'餐饮（80人，全天）',
+59:'API密钥 / 算力积分',
+60:'周边与物料',
+61:'<strong style="color:#fff">合作伙伴获取成本</strong>',
+62:'注：场地和餐饮费用取决于地点。API密钥费用取决于管理层的第3个决定。所有合作伙伴推广均通过已确认的合作关系免费完成。',
+63:'需要的决策',
+64:'启动前需要3个决定',
+65:'其他一切就绪。合作伙伴正在等待。我只需要这三项的批准。',
+66:'黑客松的主题是什么？',
+67:'目前AI社区中最热门的三个方向：',
+68:'OpenClaw还是开放框架？',
+69:'有些人对OpenClaw的安全性有顾虑。选项：要求使用OpenClaw、允许任何AI工具、或提供以OpenClaw为选项之一的vibe coding。',
+70:'我们是否为参与者提供API密钥？',
+71:'大多数有竞争力的黑客松都会提供API积分。合作伙伴已经问过这个问题。我需要在活动页面上线前知道答案。',
+72:'一旦获得<span style="background:linear-gradient(90deg,var(--blue),var(--teal),var(--green));-webkit-background-clip:text;-webkit-text-fill-color:transparent">批准</span>',
+73:'3个合作伙伴已就位。获得批准当天即可全面启动。',
+74:'✓ 活动页面——当天上线',
+75:'✓ SGInnovate发布给19万+成员',
+76:'✓ e27加入18万读者通讯',
+77:'✓ First Prompt分享给500+社区',
+78:'✓ 大学推广立即开始',
+79:'<strong>Nicholas 准备</strong> · ChronoAI市场营销与合作伙伴',
+80:'2026年3月',
+81:'<strong>2026年3月27日</strong> · 拟议',
+82:'<strong>10,000 美元</strong> · 现金奖金',
+83:'<strong>80人</strong> · 目标',
+84:'<strong>场地待定</strong>',
+85:'🤖 AI智能体——构建自主智能体',
+86:'💻 Vibe Coding——用AI辅助编码构建任何东西',
+87:'🎯 双赛道——两者都提供，参与者选择'
+};
+
+let lang='en';
+function setLang(l){
+  if(l===lang)return;
+  lang=l;
+  document.querySelectorAll('#langToggle button').forEach(b=>{
+    b.classList.toggle('active',b.textContent.trim()===(l==='en'?'EN':'中文'));
+  });
+  document.querySelectorAll('[data-t]').forEach(el=>{
+    const k=el.getAttribute('data-t');
+    if(l==='zh'){
+      if(!el.hasAttribute('data-en'))el.setAttribute('data-en',el.innerHTML);
+      if(zh[k])el.innerHTML=zh[k];
+    }else{
+      const orig=el.getAttribute('data-en');
+      if(orig!==null)el.innerHTML=orig;
+    }
+  });
+}
+</script>
 
 </body>
 </html>
