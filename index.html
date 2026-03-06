@@ -101,6 +101,10 @@ body{font-family:'Inter',-apple-system,sans-serif;-webkit-font-smoothing:antiali
 .conn-pill{display:inline-flex;align-items:center;gap:6px;padding:6px 14px;border-radius:100px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);font-size:12px;color:rgba(255,255,255,.6);margin:3px}
 .conn-pill strong{color:#fff;font-weight:600}
 
+.lang-toggle{position:fixed;top:14px;left:20px;z-index:300;display:flex;background:rgba(255,255,255,.07);backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,.1);border-radius:100px;overflow:hidden;cursor:pointer}
+.lang-toggle button{background:none;border:none;color:rgba(255,255,255,.45);font-size:12px;font-weight:700;padding:6px 14px;cursor:pointer;transition:all .2s;font-family:inherit;letter-spacing:.02em}
+.lang-toggle button.active{background:rgba(255,255,255,.12);color:#fff}
+
 @media(max-height:920px){
   :root{--s:0.88}
   .slide{padding:14px 36px;justify-content:flex-start;padding-top:22px}
@@ -159,6 +163,7 @@ body{font-family:'Inter',-apple-system,sans-serif;-webkit-font-smoothing:antiali
 </style>
 </head>
 <body>
+<div class="lang-toggle" id="langToggle"><button class="active" onclick="setLang('en')">EN</button><button onclick="setLang('zh')">中文</button></div>
 <div class="progress-track"><div class="progress-fill" id="progress"></div></div>
 <div class="nav-dots" id="navDots"></div>
 <button class="nav-arrow prev" onclick="go(-1)">←</button>
@@ -169,35 +174,35 @@ body{font-family:'Inter',-apple-system,sans-serif;-webkit-font-smoothing:antiali
 
 <!-- ═══ SLIDE 1: COVER ════════════════════════════════════ -->
 <div class="slide sd active">
-  <div class="cover-tag">Week 10 Progress · 5 March 2026</div>
-  <h1 class="cover-h1">$0 Spent. 3 Partners Locked In.<br><span class="grad">Hackathon Ready to Launch.</span></h1>
-  <p class="cover-sub">I got SGInnovate, First Prompt, and e27 on board — all through personal conversations. The hackathon plan is ready. Just need the go-ahead.</p>
+  <div class="cover-tag" data-t="1">Week 10 Progress · 5 March 2026</div>
+  <h1 class="cover-h1" data-t="2">$0 Spent. 3 Partners Locked In.<br><span class="grad">Hackathon Ready to Launch.</span></h1>
+  <p class="cover-sub" data-t="3">I got SGInnovate, First Prompt, and e27 on board — all through personal conversations. The hackathon plan is ready. Just need the go-ahead.</p>
   <div style="display:flex;align-items:center;gap:14px">
     <div class="cover-avatar">N</div>
-    <div class="cover-info"><strong>Nicholas</strong><span>ChronoAI · Marketing & Partnerships</span></div>
+    <div class="cover-info"><strong>Nicholas</strong><span data-t="4">ChronoAI · Marketing & Partnerships</span></div>
   </div>
 </div>
 
 <!-- ═══ SLIDE 2: THE HACKATHON VISION ═════════════════════ -->
 <div class="slide sd">
-  <div class="ey" style="color:var(--teal)">The Vision</div>
-  <h2 class="h2 h2w" style="text-align:center;max-width:800px">A ChronoAI <span class="grad">Vibe-Coding Hackathon.</span></h2>
-  <p class="sub sub-w" style="text-align:center">A real event where people build with AI, live. It puts ChronoAI in front of Singapore's AI community and makes us the place people want to be.</p>
+  <div class="ey" style="color:var(--teal)" data-t="5">The Vision</div>
+  <h2 class="h2 h2w" style="text-align:center;max-width:800px" data-t="6">A ChronoAI <span class="grad">Vibe-Coding Hackathon.</span></h2>
+  <p class="sub sub-w" style="text-align:center" data-t="7">A real event where people build with AI, live. It puts ChronoAI in front of Singapore's AI community and makes us the place people want to be.</p>
   <div class="three-col" style="max-width:900px;margin-top:4px">
     <div style="text-align:center;padding:min(24px,2.8vh) 16px;background:rgba(100,210,255,.04);border:1px solid rgba(100,210,255,.1);border-radius:16px">
       <div style="font-size:32px;margin-bottom:8px">🎓</div>
-      <div style="font-size:15px;font-weight:800;color:#fff;margin-bottom:4px">Students & Builders</div>
-      <div style="font-size:13px;color:var(--g2);line-height:1.5">Get university students, engineers, and coders excited about ChronoAI — these are our future users and potential hires.</div>
+      <div style="font-size:15px;font-weight:800;color:#fff;margin-bottom:4px" data-t="8">Students & Builders</div>
+      <div style="font-size:13px;color:var(--g2);line-height:1.5" data-t="9">Get university students, engineers, and coders excited about ChronoAI — these are our future users and potential hires.</div>
     </div>
     <div style="text-align:center;padding:min(24px,2.8vh) 16px;background:rgba(48,209,88,.04);border:1px solid rgba(48,209,88,.1);border-radius:16px">
       <div style="font-size:32px;margin-bottom:8px">🏛️</div>
-      <div style="font-size:15px;font-weight:800;color:#fff;margin-bottom:4px">Government Visibility</div>
-      <div style="font-size:13px;color:var(--g2);line-height:1.5">SGInnovate lists our event on their government platform — so ChronoAI shows up next to Singapore's national AI programmes.</div>
+      <div style="font-size:15px;font-weight:800;color:#fff;margin-bottom:4px" data-t="10">Government Visibility</div>
+      <div style="font-size:13px;color:var(--g2);line-height:1.5" data-t="11">SGInnovate lists our event on their government platform — so ChronoAI shows up next to Singapore's national AI programmes.</div>
     </div>
     <div style="text-align:center;padding:min(24px,2.8vh) 16px;background:rgba(191,90,242,.04);border:1px solid rgba(191,90,242,.1);border-radius:16px">
       <div style="font-size:32px;margin-bottom:8px">💰</div>
-      <div style="font-size:15px;font-weight:800;color:#fff;margin-bottom:4px">Investor Visibility</div>
-      <div style="font-size:13px;color:var(--g2);line-height:1.5">e27 has 1,770 active investors and 180K newsletter readers. They'll see ChronoAI — these are the people who write cheques.</div>
+      <div style="font-size:15px;font-weight:800;color:#fff;margin-bottom:4px" data-t="12">Investor Visibility</div>
+      <div style="font-size:13px;color:var(--g2);line-height:1.5" data-t="13">e27 has 1,770 active investors and 180K newsletter readers. They'll see ChronoAI — these are the people who write cheques.</div>
     </div>
   </div>
 </div>
@@ -206,9 +211,9 @@ body{font-family:'Inter',-apple-system,sans-serif;-webkit-font-smoothing:antiali
 <div class="slide sd">
   <div style="width:100%;max-width:1060px">
     <div style="text-align:center;margin-bottom:24px">
-      <div class="ey" style="color:var(--green)">My Achievement This Week</div>
-      <h2 class="h2 h2w" style="text-align:center;max-width:800px;margin:0 auto 6px">3 Strong Partners. <span class="grad-green">$0 Spent.</span></h2>
-      <p class="sub sub-w" style="text-align:center;margin:0 auto min(12px,1.4vh);max-width:640px">No ads, no sponsorship budget. I got every partner through coffee chats and personal conversations. These are picky organisations — they said yes because they believed in what we're building.</p>
+      <div class="ey" style="color:var(--green)" data-t="14">My Achievement This Week</div>
+      <h2 class="h2 h2w" style="text-align:center;max-width:800px;margin:0 auto 6px" data-t="15">3 Strong Partners. <span class="grad-green">$0 Spent.</span></h2>
+      <p class="sub sub-w" style="text-align:center;margin:0 auto min(12px,1.4vh);max-width:640px" data-t="16">No ads, no sponsorship budget. I got every partner through coffee chats and personal conversations. These are picky organisations — they said yes because they believed in what we're building.</p>
     </div>
     <div class="four-col" style="max-width:1060px;margin-bottom:min(12px,1.4vh)">
       <div class="p-card" style="border-color:rgba(48,209,88,.25);text-align:center;padding:22px 14px">
@@ -254,7 +259,7 @@ body{font-family:'Inter',-apple-system,sans-serif;-webkit-font-smoothing:antiali
     </div>
     <div style="display:grid;grid-template-columns:1fr auto 1fr;gap:10px;align-items:center">
       <div style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:12px;padding:min(12px,1.4vh) 14px;text-align:center">
-        <div style="font-size:10px;font-weight:700;color:var(--g2);text-transform:uppercase;letter-spacing:.1em;margin-bottom:5px">Together They Give Us Access To</div>
+        <div style="font-size:10px;font-weight:700;color:var(--g2);text-transform:uppercase;letter-spacing:.1em;margin-bottom:5px" data-t="17">Together They Give Us Access To</div>
         <div style="display:flex;justify-content:center;gap:4px;flex-wrap:wrap">
           <span style="padding:4px 10px;border-radius:100px;font-size:11px;font-weight:700;background:rgba(48,209,88,.08);color:var(--green);border:1px solid rgba(48,209,88,.15)">🏛️ Government</span>
           <span style="padding:4px 10px;border-radius:100px;font-size:11px;font-weight:700;background:rgba(100,210,255,.08);color:var(--teal);border:1px solid rgba(100,210,255,.15)">🎓 Students</span>
@@ -265,8 +270,8 @@ body{font-family:'Inter',-apple-system,sans-serif;-webkit-font-smoothing:antiali
       <div style="width:1px;height:44px;background:rgba(255,255,255,.08)"></div>
       <div style="text-align:center;padding:min(12px,1.4vh) 14px;background:linear-gradient(135deg,rgba(48,209,88,.08),rgba(0,113,227,.06));border:1px solid rgba(48,209,88,.2);border-radius:12px">
         <div style="font-size:clamp(36px,4vw,48px);font-weight:900;color:var(--green);letter-spacing:-.03em;line-height:1">$0</div>
-        <div style="font-size:11px;font-weight:700;color:rgba(255,255,255,.5);margin-top:3px;text-transform:uppercase;letter-spacing:.1em">Total Partnership Cost</div>
-        <div style="font-size:11px;color:rgba(255,255,255,.35);margin-top:1px">Pure outreach. Pure relationship building.</div>
+        <div style="font-size:11px;font-weight:700;color:rgba(255,255,255,.5);margin-top:3px;text-transform:uppercase;letter-spacing:.1em" data-t="18">Total Partnership Cost</div>
+        <div style="font-size:11px;color:rgba(255,255,255,.35);margin-top:1px" data-t="19">Pure outreach. Pure relationship building.</div>
       </div>
     </div>
   </div>
@@ -276,31 +281,31 @@ body{font-family:'Inter',-apple-system,sans-serif;-webkit-font-smoothing:antiali
 <div class="slide sd">
   <div class="two-col" style="align-items:start;max-width:1100px">
     <div>
-      <div class="ey" style="color:var(--green)">Partner 1 · Confirmed</div>
+      <div class="ey" style="color:var(--green)" data-t="20">Partner 1 · Confirmed</div>
       <h2 class="h2 h2w" style="font-size:clamp(30px,4vw,48px)"><span class="grad-green">SGInnovate</span></h2>
-      <p style="color:rgba(255,255,255,.55);font-size:clamp(13px,1.5vw,16px);line-height:1.55;margin-bottom:min(16px,1.8vh)">A <strong style="color:#fff">Singapore government organisation</strong> focused on deep tech. The SG government is investing $1B into AI, with PM Wong chairing the AI Council. Working with them makes ChronoAI look serious — and gets us in front of thousands of students.</p>
+      <p style="color:rgba(255,255,255,.55);font-size:clamp(13px,1.5vw,16px);line-height:1.55;margin-bottom:min(16px,1.8vh)" data-t="21">A <strong style="color:#fff">Singapore government organisation</strong> focused on deep tech. The SG government is investing $1B into AI, with PM Wong chairing the AI Council. Working with them makes ChronoAI look serious — and gets us in front of thousands of students.</p>
       <div style="display:flex;gap:8px;margin-bottom:min(14px,1.6vh)">
         <div style="flex:1;text-align:center;background:rgba(48,209,88,.06);border:1px solid rgba(48,209,88,.2);border-radius:12px;padding:min(14px,1.5vh) 8px">
           <div style="font-size:28px;margin-bottom:2px">🏛️</div>
-          <strong style="font-size:14px;font-weight:800;color:var(--green);display:block">Gov-Backed</strong>
-          <span style="font-size:11px;color:var(--g2)">National agency</span>
+          <strong style="font-size:14px;font-weight:800;color:var(--green);display:block" data-t="22">Gov-Backed</strong>
+          <span style="font-size:11px;color:var(--g2)" data-t="23">National agency</span>
         </div>
         <div style="flex:1;text-align:center;background:rgba(100,210,255,.06);border:1px solid rgba(100,210,255,.2);border-radius:12px;padding:min(14px,1.5vh) 8px">
           <div style="font-size:28px;margin-bottom:2px">🎓</div>
-          <strong style="font-size:14px;font-weight:800;color:var(--teal);display:block">Students</strong>
-          <span style="font-size:11px;color:var(--g2)">Thousands of builders</span>
+          <strong style="font-size:14px;font-weight:800;color:var(--teal);display:block" data-t="24">Students</strong>
+          <span style="font-size:11px;color:var(--g2)" data-t="25">Thousands of builders</span>
         </div>
         <div style="flex:1;text-align:center;background:rgba(0,113,227,.06);border:1px solid rgba(0,113,227,.2);border-radius:12px;padding:min(14px,1.5vh) 8px">
           <div style="font-size:28px;margin-bottom:2px">🔬</div>
-          <strong style="font-size:14px;font-weight:800;color:var(--blue);display:block">Deep Tech</strong>
-          <span style="font-size:11px;color:var(--g2)">AI, blockchain</span>
+          <strong style="font-size:14px;font-weight:800;color:var(--blue);display:block" data-t="26">Deep Tech</strong>
+          <span style="font-size:11px;color:var(--g2)" data-t="27">AI, blockchain</span>
         </div>
       </div>
       <div class="card" style="border-color:rgba(48,209,88,.2);padding:min(14px,1.6vh) 14px">
-        <div style="font-size:11px;font-weight:700;color:var(--green);text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px">Why This Matters</div>
-        <div class="tk-item"><div class="tk-num" style="background:rgba(48,209,88,.15);color:var(--green)">1</div><div class="tk-text"><strong>Our hackathon gets listed on their platform</strong> — thousands of students will see it.</div></div>
-        <div class="tk-item"><div class="tk-num" style="background:rgba(48,209,88,.15);color:var(--green)">2</div><div class="tk-text"><strong>Government backing</strong> — makes us credible to universities and other big organisations.</div></div>
-        <div class="tk-item" style="margin-bottom:0"><div class="tk-num" style="background:rgba(48,209,88,.15);color:var(--green)">3</div><div class="tk-text">Their audience is <strong>exactly the kind of people I want using ChronoAI</strong>.</div></div>
+        <div style="font-size:11px;font-weight:700;color:var(--green);text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px" data-t="28">Why This Matters</div>
+        <div class="tk-item"><div class="tk-num" style="background:rgba(48,209,88,.15);color:var(--green)">1</div><div class="tk-text" data-t="29"><strong>Our hackathon gets listed on their platform</strong> — thousands of students will see it.</div></div>
+        <div class="tk-item"><div class="tk-num" style="background:rgba(48,209,88,.15);color:var(--green)">2</div><div class="tk-text" data-t="30"><strong>Government backing</strong> — makes us credible to universities and other big organisations.</div></div>
+        <div class="tk-item" style="margin-bottom:0"><div class="tk-num" style="background:rgba(48,209,88,.15);color:var(--green)">3</div><div class="tk-text" data-t="31">Their audience is <strong>exactly the kind of people I want using ChronoAI</strong>.</div></div>
       </div>
       <div style="display:flex;gap:8px;align-items:center;margin-top:min(10px,1.2vh);margin-bottom:min(10px,1.2vh)">
         <img src="./img/sginnovate.png" alt="SGInnovate" style="height:28px;background:#fff;padding:4px 10px;border-radius:6px">
@@ -324,18 +329,18 @@ body{font-family:'Inter',-apple-system,sans-serif;-webkit-font-smoothing:antiali
     </div>
     <div>
       <div style="padding:min(12px,1.4vh) 14px;background:rgba(48,209,88,.06);border:1.5px solid rgba(48,209,88,.25);border-radius:12px;margin-bottom:min(10px,1.2vh)">
-        <div style="font-size:11px;font-weight:800;color:var(--green);text-transform:uppercase;letter-spacing:.1em;margin-bottom:8px">How We Collaborate</div>
+        <div style="font-size:11px;font-weight:800;color:var(--green);text-transform:uppercase;letter-spacing:.1em;margin-bottom:8px" data-t="32">How We Collaborate</div>
         <div style="display:flex;align-items:flex-start;gap:8px;margin-bottom:6px">
           <span style="font-size:16px;flex-shrink:0">📋</span>
-          <p style="font-size:13px;color:rgba(255,255,255,.7);line-height:1.45;margin:0"><strong style="color:#fff">They list our hackathon on their community board</strong> — 190K+ members and students will see it.</p>
+          <p style="font-size:13px;color:rgba(255,255,255,.7);line-height:1.45;margin:0" data-t="33"><strong style="color:#fff">They list our hackathon on their community board</strong> — 190K+ members and students will see it.</p>
         </div>
         <div style="display:flex;align-items:flex-start;gap:8px">
           <span style="font-size:16px;flex-shrink:0">🏛️</span>
-          <p style="font-size:13px;color:rgba(255,255,255,.7);line-height:1.45;margin:0"><strong style="color:#fff">Government stamp of approval</strong> — ChronoAI shows up next to national AI programmes.</p>
+          <p style="font-size:13px;color:rgba(255,255,255,.7);line-height:1.45;margin:0" data-t="34"><strong style="color:#fff">Government stamp of approval</strong> — ChronoAI shows up next to national AI programmes.</p>
         </div>
       </div>
 
-      <div style="font-size:10px;font-weight:800;color:var(--orange);text-transform:uppercase;letter-spacing:.1em;margin-bottom:6px">🇸🇬 Why This Timing Matters</div>
+      <div style="font-size:10px;font-weight:800;color:var(--orange);text-transform:uppercase;letter-spacing:.1em;margin-bottom:6px" data-t="35">🇸🇬 Why This Timing Matters</div>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:4px;margin-bottom:min(10px,1.2vh)">
         <img src="./img/sg-budget4.png" alt="Budget 2026 — 100K AI workers" style="border-radius:8px;width:100%;object-fit:contain">
         <img src="./img/sg-budget1.png" alt="Budget 2026 AI Council" style="border-radius:8px;width:100%;object-fit:contain">
@@ -354,8 +359,8 @@ body{font-family:'Inter',-apple-system,sans-serif;-webkit-font-smoothing:antiali
       </a>
 
       <div style="padding:10px 12px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:12px;margin-top:min(8px,1vh)">
-        <div style="font-size:10px;font-weight:700;color:var(--orange);text-transform:uppercase;letter-spacing:.1em;margin-bottom:3px">How I Secured This</div>
-        <p style="font-size:11px;color:rgba(255,255,255,.45);line-height:1.45;margin:0">SGInnovate is picky about who they work with. I met them, shared the hackathon idea, and they said yes. No money involved.</p>
+        <div style="font-size:10px;font-weight:700;color:var(--orange);text-transform:uppercase;letter-spacing:.1em;margin-bottom:3px" data-t="36">How I Secured This</div>
+        <p style="font-size:11px;color:rgba(255,255,255,.45);line-height:1.45;margin:0" data-t="37">SGInnovate is picky about who they work with. I met them, shared the hackathon idea, and they said yes. No money involved.</p>
       </div>
     </div>
   </div>
@@ -365,9 +370,9 @@ body{font-family:'Inter',-apple-system,sans-serif;-webkit-font-smoothing:antiali
 <div class="slide sd">
   <div class="two-col" style="align-items:start;max-width:1100px">
     <div>
-      <div class="ey" style="color:var(--blue)">Partner 2 · Confirmed</div>
+      <div class="ey" style="color:var(--blue)" data-t="38">Partner 2 · Confirmed</div>
       <h2 class="h2 h2w" style="font-size:clamp(30px,4vw,48px)"><span class="grad">First Prompt</span></h2>
-      <p style="color:rgba(255,255,255,.55);font-size:clamp(13px,1.5vw,16px);line-height:1.55;margin-bottom:min(12px,1.4vh)">An <strong style="color:#fff">active AI community in Singapore</strong> that runs big AI events across APAC. Speakers from Alibaba Cloud, Huawei AI, and OpenAI have been on their stage — that's the level of people ChronoAI is now connected to.</p>
+      <p style="color:rgba(255,255,255,.55);font-size:clamp(13px,1.5vw,16px);line-height:1.55;margin-bottom:min(12px,1.4vh)" data-t="39">An <strong style="color:#fff">active AI community in Singapore</strong> that runs big AI events across APAC. Speakers from Alibaba Cloud, Huawei AI, and OpenAI have been on their stage — that's the level of people ChronoAI is now connected to.</p>
       <div class="photo-grid photo-grid-2" style="gap:6px;margin-bottom:min(12px,1.4vh)">
         <img src="./img/fp2.png" alt="First Prompt" style="height:min(180px,18vh);border-radius:10px">
         <img src="./img/fp1.png" alt="First Prompt" style="height:min(180px,18vh);border-radius:10px">
@@ -393,21 +398,21 @@ body{font-family:'Inter',-apple-system,sans-serif;-webkit-font-smoothing:antiali
     </div>
     <div>
       <div class="card" style="margin-bottom:min(10px,1.2vh);border-color:rgba(0,113,227,.2);padding:min(14px,1.6vh) 14px">
-        <div style="font-size:11px;font-weight:700;color:var(--blue);text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px">Why This Matters</div>
-        <div class="tk-item"><div class="tk-num">1</div><div class="tk-text"><strong>Where Singapore's AI people hang out.</strong> Builders, researchers, and founders — these are the people who try new tools first and tell everyone else.</div></div>
-        <div class="tk-item"><div class="tk-num">2</div><div class="tk-text"><strong>We can keep showing up.</strong> Every First Prompt event is a chance for ChronoAI to be seen — without us having to organise anything ourselves.</div></div>
-        <div class="tk-item" style="margin-bottom:0"><div class="tk-num">3</div><div class="tk-text"><strong>Big-name network.</strong> Speakers from Alibaba Cloud, Huawei AI, OpenAI — that's the level of people in this community.</div></div>
+        <div style="font-size:11px;font-weight:700;color:var(--blue);text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px" data-t="40">Why This Matters</div>
+        <div class="tk-item"><div class="tk-num">1</div><div class="tk-text" data-t="41"><strong>Where Singapore's AI people hang out.</strong> Builders, researchers, and founders — these are the people who try new tools first and tell everyone else.</div></div>
+        <div class="tk-item"><div class="tk-num">2</div><div class="tk-text" data-t="42"><strong>We can keep showing up.</strong> Every First Prompt event is a chance for ChronoAI to be seen — without us having to organise anything ourselves.</div></div>
+        <div class="tk-item" style="margin-bottom:0"><div class="tk-num">3</div><div class="tk-text" data-t="43"><strong>Big-name network.</strong> Speakers from Alibaba Cloud, Huawei AI, OpenAI — that's the level of people in this community.</div></div>
       </div>
       <div style="padding:min(12px,1.4vh) 14px;background:rgba(0,113,227,.06);border:1.5px solid rgba(0,113,227,.25);border-radius:12px;margin-bottom:min(10px,1.2vh)">
-        <div style="font-size:11px;font-weight:800;color:var(--blue);text-transform:uppercase;letter-spacing:.1em;margin-bottom:8px">How We Collaborate</div>
+        <div style="font-size:11px;font-weight:800;color:var(--blue);text-transform:uppercase;letter-spacing:.1em;margin-bottom:8px" data-t="44">How We Collaborate</div>
         <div style="display:flex;align-items:flex-start;gap:8px">
           <span style="font-size:16px;flex-shrink:0">📣</span>
-          <p style="font-size:13px;color:rgba(255,255,255,.7);line-height:1.45;margin:0"><strong style="color:#fff">They'll blast our hackathon to their community</strong> — 500+ AI builders and founders in Singapore.</p>
+          <p style="font-size:13px;color:rgba(255,255,255,.7);line-height:1.45;margin:0" data-t="45"><strong style="color:#fff">They'll blast our hackathon to their community</strong> — 500+ AI builders and founders in Singapore.</p>
         </div>
       </div>
       <div style="padding:10px 12px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:12px">
-        <div style="font-size:10px;font-weight:700;color:var(--orange);text-transform:uppercase;letter-spacing:.1em;margin-bottom:3px">How I Secured This</div>
-        <p style="font-size:11px;color:rgba(255,255,255,.45);line-height:1.45;margin:0">Wasn't a cold email. I met them over coffee, told them about the hackathon, and they wanted in. No money involved.</p>
+        <div style="font-size:10px;font-weight:700;color:var(--orange);text-transform:uppercase;letter-spacing:.1em;margin-bottom:3px" data-t="46">How I Secured This</div>
+        <p style="font-size:11px;color:rgba(255,255,255,.45);line-height:1.45;margin:0" data-t="47">Wasn't a cold email. I met them over coffee, told them about the hackathon, and they wanted in. No money involved.</p>
       </div>
     </div>
   </div>
@@ -417,9 +422,9 @@ body{font-family:'Inter',-apple-system,sans-serif;-webkit-font-smoothing:antiali
 <div class="slide sd">
   <div class="two-col" style="align-items:start;max-width:1100px">
     <div>
-      <div class="ey" style="color:var(--orange)">Partner 3 · Confirmed</div>
+      <div class="ey" style="color:var(--orange)" data-t="48">Partner 3 · Confirmed</div>
       <h2 class="h2 h2w" style="font-size:clamp(30px,4vw,48px)"><span class="grad-orange">e27</span></h2>
-      <p style="color:rgba(255,255,255,.55);font-size:clamp(13px,1.5vw,16px);line-height:1.55;margin-bottom:min(12px,1.4vh)">The biggest startup platform in Southeast Asia. <strong style="color:#fff">Founders and investors</strong> read e27 every day. Being on e27 means <strong style="color:#fff">the people who fund companies will see ChronoAI</strong>.</p>
+      <p style="color:rgba(255,255,255,.55);font-size:clamp(13px,1.5vw,16px);line-height:1.55;margin-bottom:min(12px,1.4vh)" data-t="49">The biggest startup platform in Southeast Asia. <strong style="color:#fff">Founders and investors</strong> read e27 every day. Being on e27 means <strong style="color:#fff">the people who fund companies will see ChronoAI</strong>.</p>
       <div style="display:flex;gap:8px;margin-bottom:min(12px,1.4vh)">
         <div style="flex:1;text-align:center;background:rgba(255,159,10,.06);border:1px solid rgba(255,159,10,.2);border-radius:12px;padding:min(12px,1.4vh) 8px">
           <strong style="font-size:clamp(24px,3vw,32px);font-weight:900;color:#fff;display:block">180K</strong>
@@ -445,21 +450,21 @@ body{font-family:'Inter',-apple-system,sans-serif;-webkit-font-smoothing:antiali
     </div>
     <div>
       <div class="card" style="margin-bottom:min(10px,1.2vh);border-color:rgba(255,159,10,.2);padding:min(14px,1.6vh) 14px">
-        <div style="font-size:11px;font-weight:700;color:var(--orange);text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px">Why This Matters</div>
-        <div class="tk-item"><div class="tk-num" style="background:rgba(255,159,10,.15);color:var(--orange)">1</div><div class="tk-text"><strong>Investors will see us.</strong> 1,770 active investors use e27. Our hackathon shows up where they already look.</div></div>
-        <div class="tk-item"><div class="tk-num" style="background:rgba(255,159,10,.15);color:var(--orange)">2</div><div class="tk-text"><strong>Two things from one partner.</strong> They'll promote the hackathon AND feature SoulGarden in their newsletter (180K readers). No cost.</div></div>
-        <div class="tk-item" style="margin-bottom:0"><div class="tk-num" style="background:rgba(255,159,10,.15);color:var(--orange)">3</div><div class="tk-text"><strong>Built-in press</strong> for any future ChronoAI launches — they reach the people who make decisions across Southeast Asia.</div></div>
+        <div style="font-size:11px;font-weight:700;color:var(--orange);text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px" data-t="50">Why This Matters</div>
+        <div class="tk-item"><div class="tk-num" style="background:rgba(255,159,10,.15);color:var(--orange)">1</div><div class="tk-text" data-t="51"><strong>Investors will see us.</strong> 1,770 active investors use e27. Our hackathon shows up where they already look.</div></div>
+        <div class="tk-item"><div class="tk-num" style="background:rgba(255,159,10,.15);color:var(--orange)">2</div><div class="tk-text" data-t="52"><strong>Two things from one partner.</strong> They'll promote the hackathon AND feature SoulGarden in their newsletter (180K readers). No cost.</div></div>
+        <div class="tk-item" style="margin-bottom:0"><div class="tk-num" style="background:rgba(255,159,10,.15);color:var(--orange)">3</div><div class="tk-text" data-t="53"><strong>Built-in press</strong> for any future ChronoAI launches — they reach the people who make decisions across Southeast Asia.</div></div>
       </div>
       <div style="padding:min(12px,1.4vh) 14px;background:rgba(255,159,10,.06);border:1.5px solid rgba(255,159,10,.25);border-radius:12px;margin-bottom:min(10px,1.2vh)">
-        <div style="font-size:11px;font-weight:800;color:var(--orange);text-transform:uppercase;letter-spacing:.1em;margin-bottom:8px">How We Collaborate</div>
+        <div style="font-size:11px;font-weight:800;color:var(--orange);text-transform:uppercase;letter-spacing:.1em;margin-bottom:8px" data-t="54">How We Collaborate</div>
         <div style="display:flex;align-items:flex-start;gap:8px">
           <span style="font-size:16px;flex-shrink:0">📨</span>
-          <p style="font-size:13px;color:rgba(255,255,255,.7);line-height:1.45;margin:0"><strong style="color:#fff">They'll put our hackathon in their newsletter</strong> — 180K readers across APAC who are founders, investors, and people who make decisions.</p>
+          <p style="font-size:13px;color:rgba(255,255,255,.7);line-height:1.45;margin:0" data-t="55"><strong style="color:#fff">They'll put our hackathon in their newsletter</strong> — 180K readers across APAC who are founders, investors, and people who make decisions.</p>
         </div>
       </div>
       <div style="padding:10px 12px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:12px">
-        <div style="font-size:10px;font-weight:700;color:var(--orange);text-transform:uppercase;letter-spacing:.1em;margin-bottom:3px">How I Secured This</div>
-        <p style="font-size:11px;color:rgba(255,255,255,.45);line-height:1.45;margin:0">e27 doesn't work with just anyone. I pitched what ChronoAI is doing and they were interested right away. No cost.</p>
+        <div style="font-size:10px;font-weight:700;color:var(--orange);text-transform:uppercase;letter-spacing:.1em;margin-bottom:3px" data-t="56">How I Secured This</div>
+        <p style="font-size:11px;color:rgba(255,255,255,.45);line-height:1.45;margin:0" data-t="57">e27 doesn't work with just anyone. I pitched what ChronoAI is doing and they were interested right away. No cost.</p>
       </div>
     </div>
   </div>
@@ -468,17 +473,17 @@ body{font-family:'Inter',-apple-system,sans-serif;-webkit-font-smoothing:antiali
 <!-- ═══ SLIDE 7: THOUGHT LEADERS & JUDGES ═════════════════ -->
 <div class="slide sd">
   <div style="width:100%;max-width:1100px">
-    <div class="ey" style="color:var(--purple);text-align:center">A Different Layer of Partnerships</div>
-    <h2 class="h2 h2w" style="text-align:center;margin-bottom:4px">Industry <span class="grad-purple">Thought Leaders.</span></h2>
-    <p class="sub sub-w" style="text-align:center;margin:0 auto min(18px,2vh)">On top of community partners, I'm lining up well-known people in AI to be judges and mentors — so the hackathon has real weight behind it.</p>
+    <div class="ey" style="color:var(--purple);text-align:center" data-t="58">A Different Layer of Partnerships</div>
+    <h2 class="h2 h2w" style="text-align:center;margin-bottom:4px" data-t="59">Industry <span class="grad-purple">Thought Leaders.</span></h2>
+    <p class="sub sub-w" style="text-align:center;margin:0 auto min(18px,2vh)" data-t="60">On top of community partners, I'm lining up well-known people in AI to be judges and mentors — so the hackathon has real weight behind it.</p>
 
     <div class="four-col" style="max-width:1100px;gap:12px">
       <div style="background:rgba(255,255,255,.04);border:1px dashed rgba(255,159,10,.3);border-radius:16px;padding:min(16px,1.8vh) 14px;text-align:center">
         <img src="./img/lion-sim.png" alt="Lion Sim" style="width:min(80px,9vh);height:min(80px,9vh);border-radius:50%;object-fit:cover;margin-bottom:8px;border:2px solid rgba(255,159,10,.3)">
         <div style="font-size:15px;font-weight:800;color:#fff;margin-bottom:3px">Lion Sim</div>
         <span class="p-status ps-progress" style="font-size:10px;margin-bottom:4px">Pending Request</span>
-        <div style="font-size:11px;color:var(--purple);font-weight:700;margin-bottom:6px">External · AI Community</div>
-        <p style="font-size:12px;color:rgba(255,255,255,.55);line-height:1.45;margin-bottom:8px">Ran one of Singapore's biggest OpenClaw hackathons. Knows exactly how to make these events work.</p>
+        <div style="font-size:11px;color:var(--purple);font-weight:700;margin-bottom:6px" data-t="61">External · AI Community</div>
+        <p style="font-size:12px;color:rgba(255,255,255,.55);line-height:1.45;margin-bottom:8px" data-t="62">Ran one of Singapore's biggest OpenClaw hackathons. Knows exactly how to make these events work.</p>
         <a href="https://www.linkedin.com/in/lionelshen/" target="_blank" style="display:inline-flex;align-items:center;gap:4px;padding:4px 10px;border-radius:100px;background:rgba(0,113,227,.1);border:1px solid rgba(0,113,227,.2);color:var(--blue);font-size:10px;font-weight:700;text-decoration:none">in LinkedIn ↗</a>
       </div>
 
@@ -486,8 +491,8 @@ body{font-family:'Inter',-apple-system,sans-serif;-webkit-font-smoothing:antiali
         <img src="./img/benjy-wong.png" alt="Benjy Wong" style="width:min(80px,9vh);height:min(80px,9vh);border-radius:50%;object-fit:cover;margin-bottom:8px;border:2px solid rgba(255,159,10,.3)">
         <div style="font-size:15px;font-weight:800;color:#fff;margin-bottom:3px">Benjy Wong</div>
         <span class="p-status ps-progress" style="font-size:10px;margin-bottom:4px">Pending Request</span>
-        <div style="font-size:11px;color:var(--purple);font-weight:700;margin-bottom:6px">External · AI Keynote Speaker</div>
-        <p style="font-size:12px;color:rgba(255,255,255,.55);line-height:1.45;margin-bottom:8px">Founder & CEO. Well-known AI speaker — people show up when he's on the bill.</p>
+        <div style="font-size:11px;color:var(--purple);font-weight:700;margin-bottom:6px" data-t="63">External · AI Keynote Speaker</div>
+        <p style="font-size:12px;color:rgba(255,255,255,.55);line-height:1.45;margin-bottom:8px" data-t="64">Founder & CEO. Well-known AI speaker — people show up when he's on the bill.</p>
         <a href="https://www.linkedin.com/in/benjywong/" target="_blank" style="display:inline-flex;align-items:center;gap:4px;padding:4px 10px;border-radius:100px;background:rgba(0,113,227,.1);border:1px solid rgba(0,113,227,.2);color:var(--blue);font-size:10px;font-weight:700;text-decoration:none">in LinkedIn ↗</a>
       </div>
 
@@ -495,8 +500,8 @@ body{font-family:'Inter',-apple-system,sans-serif;-webkit-font-smoothing:antiali
         <img src="./img/wendy-wang.png" alt="Wendy Wang" style="width:min(80px,9vh);height:min(80px,9vh);border-radius:50%;object-fit:cover;margin:0 auto 8px;display:block;border:2px solid rgba(48,209,88,.3)">
         <div style="font-size:15px;font-weight:800;color:#fff;margin-bottom:3px">Wendy Wang</div>
         <span class="p-status ps-confirmed" style="font-size:10px;margin-bottom:4px">✓ Confirmed</span>
-        <div style="font-size:11px;color:var(--green);font-weight:700;margin-bottom:6px">Internal · Business Director</div>
-        <p style="font-size:12px;color:rgba(255,255,255,.55);line-height:1.45;margin-bottom:8px">AI speaker and our Business Director. Judging how well teams can <strong style="color:#fff">take their product to market</strong>.</p>
+        <div style="font-size:11px;color:var(--green);font-weight:700;margin-bottom:6px" data-t="65">Internal · Business Director</div>
+        <p style="font-size:12px;color:rgba(255,255,255,.55);line-height:1.45;margin-bottom:8px" data-t="66">AI speaker and our Business Director. Judging how well teams can <strong style="color:#fff">take their product to market</strong>.</p>
         <span style="display:inline-flex;align-items:center;gap:4px;padding:4px 10px;border-radius:100px;background:rgba(48,209,88,.1);border:1px solid rgba(48,209,88,.2);color:var(--green);font-size:10px;font-weight:700">ChronoAI Team</span>
       </div>
 
@@ -504,8 +509,8 @@ body{font-family:'Inter',-apple-system,sans-serif;-webkit-font-smoothing:antiali
         <img src="./img/dannick-young.png" alt="Dannick Young" style="width:min(80px,9vh);height:min(80px,9vh);border-radius:50%;object-fit:cover;margin:0 auto 8px;display:block;border:2px solid rgba(48,209,88,.3)">
         <div style="font-size:15px;font-weight:800;color:#fff;margin-bottom:3px">Dannick Young</div>
         <span class="p-status ps-confirmed" style="font-size:10px;margin-bottom:4px">✓ Confirmed</span>
-        <div style="font-size:11px;color:var(--green);font-weight:700;margin-bottom:6px">Internal · Head of Design</div>
-        <p style="font-size:12px;color:rgba(255,255,255,.55);line-height:1.45;margin-bottom:8px">Our Head of Design. Judging from a <strong style="color:#fff">design & UX perspective</strong>.</p>
+        <div style="font-size:11px;color:var(--green);font-weight:700;margin-bottom:6px" data-t="67">Internal · Head of Design</div>
+        <p style="font-size:12px;color:rgba(255,255,255,.55);line-height:1.45;margin-bottom:8px" data-t="68">Our Head of Design. Judging from a <strong style="color:#fff">design & UX perspective</strong>.</p>
         <span style="display:inline-flex;align-items:center;gap:4px;padding:4px 10px;border-radius:100px;background:rgba(48,209,88,.1);border:1px solid rgba(48,209,88,.2);color:var(--green);font-size:10px;font-weight:700">ChronoAI Team</span>
       </div>
     </div>
@@ -520,9 +525,9 @@ body{font-family:'Inter',-apple-system,sans-serif;-webkit-font-smoothing:antiali
 <!-- ═══ SLIDE 8: HACKATHON — THE PLAN ════════════════════ -->
 <div class="slide sd">
   <div style="width:100%;max-width:1100px">
-    <div class="ey" style="color:var(--teal);text-align:center">The Hackathon</div>
-    <h2 class="h2 h2w" style="text-align:center;margin-bottom:4px">Hackathon: <span class="grad">ChronoAI Vibe-Coding Day</span></h2>
-    <p class="sub sub-w" style="text-align:center;margin:0 auto min(16px,1.8vh);max-width:640px">A full-day hackathon with $10K cash on the line — the biggest cash prize for any AI hackathon in Singapore right now.</p>
+    <div class="ey" style="color:var(--teal);text-align:center" data-t="69">The Hackathon</div>
+    <h2 class="h2 h2w" style="text-align:center;margin-bottom:4px" data-t="70">Hackathon: <span class="grad">ChronoAI Vibe-Coding Day</span></h2>
+    <p class="sub sub-w" style="text-align:center;margin:0 auto min(16px,1.8vh);max-width:640px" data-t="71">A full-day hackathon with $10K cash on the line — the biggest cash prize for any AI hackathon in Singapore right now.</p>
 
     <div style="display:flex;gap:10px;margin-bottom:min(14px,1.6vh)">
       <div class="hack-stat" style="border:1px solid rgba(100,210,255,.2)"><strong>27 Mar</strong><span>Proposed Date</span></div>
@@ -534,18 +539,18 @@ body{font-family:'Inter',-apple-system,sans-serif;-webkit-font-smoothing:antiali
     <div class="two-col" style="max-width:1100px">
       <div>
         <div class="card" style="margin-bottom:min(10px,1.2vh);border-color:rgba(100,210,255,.2)">
-          <div style="font-size:11px;font-weight:700;color:var(--teal);text-transform:uppercase;letter-spacing:.08em;margin-bottom:6px">The Why</div>
-          <p style="color:rgba(255,255,255,.6);font-size:13px;line-height:1.5"><strong style="color:#fff">AI hackathons in Singapore are blowing up</strong> — but the big ones offer zero cash. OpenClaw had 457 people for $0. Agent Forge had 274 for $2K in credits.</p>
-          <p style="color:rgba(255,255,255,.6);font-size:13px;line-height:1.5;margin-top:6px">We offer <strong style="color:#fff">$10,000 USD in real cash</strong> — that alone makes ours the hackathon everyone wants to join.</p>
+          <div style="font-size:11px;font-weight:700;color:var(--teal);text-transform:uppercase;letter-spacing:.08em;margin-bottom:6px" data-t="72">The Why</div>
+          <p style="color:rgba(255,255,255,.6);font-size:13px;line-height:1.5" data-t="73"><strong style="color:#fff">AI hackathons in Singapore are blowing up</strong> — but the big ones offer zero cash. OpenClaw had 457 people for $0. Agent Forge had 274 for $2K in credits.</p>
+          <p style="color:rgba(255,255,255,.6);font-size:13px;line-height:1.5;margin-top:6px" data-t="74">We offer <strong style="color:#fff">$10,000 USD in real cash</strong> — that alone makes ours the hackathon everyone wants to join.</p>
         </div>
         <div class="card" style="border-color:rgba(0,113,227,.2)">
-          <div style="font-size:11px;font-weight:700;color:var(--blue);text-transform:uppercase;letter-spacing:.08em;margin-bottom:6px">The Format</div>
-          <p style="color:rgba(255,255,255,.6);font-size:13px;line-height:1.5">80 people in the room. <strong style="color:#fff">20 vibe-coders</strong> competing live for $10K cash, investor intros, and mentorship with our founding team. <strong style="color:#fff">60 people from the community</strong> come to watch, network, see the demos, and experience it all live.</p>
+          <div style="font-size:11px;font-weight:700;color:var(--blue);text-transform:uppercase;letter-spacing:.08em;margin-bottom:6px" data-t="75">The Format</div>
+          <p style="color:rgba(255,255,255,.6);font-size:13px;line-height:1.5" data-t="76">80 people in the room. <strong style="color:#fff">20 vibe-coders</strong> competing live for $10K cash, investor intros, and mentorship with our founding team. <strong style="color:#fff">60 people from the community</strong> come to watch, network, see the demos, and experience it all live.</p>
         </div>
       </div>
       <div>
         <div class="card" style="margin-bottom:min(10px,1.2vh);border-color:rgba(48,209,88,.2)">
-          <div style="font-size:11px;font-weight:700;color:var(--green);text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px">Success Metrics — What I'm Targeting</div>
+          <div style="font-size:11px;font-weight:700;color:var(--green);text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px" data-t="77">Success Metrics — What I'm Targeting</div>
           <div style="display:flex;flex-direction:column;gap:5px">
             <div style="display:flex;justify-content:space-between;align-items:center;padding:7px 12px;background:rgba(48,209,88,.05);border-radius:8px;border:1px solid rgba(48,209,88,.1)">
               <span style="font-size:12px;color:rgba(255,255,255,.7)">Registrations</span>
@@ -585,33 +590,33 @@ body{font-family:'Inter',-apple-system,sans-serif;-webkit-font-smoothing:antiali
 <!-- ═══ SLIDE 8: DECISIONS NEEDED ════════════════════════ -->
 <div class="slide sd">
   <div style="width:100%;max-width:1000px">
-    <div class="ey" style="color:var(--orange);text-align:center">Ready to Launch</div>
-    <h2 class="h2 h2w" style="text-align:center;max-width:700px;margin:0 auto 6px">3 Decisions.<br><span class="grad-orange">Then I Launch.</span></h2>
-    <p class="sub sub-w" style="text-align:center;margin:0 auto min(18px,2vh)">Everything is ready. Partners are waiting. I just need a yes on three things.</p>
+    <div class="ey" style="color:var(--orange);text-align:center" data-t="78">Ready to Launch</div>
+    <h2 class="h2 h2w" style="text-align:center;max-width:700px;margin:0 auto 6px" data-t="79">3 Decisions.<br><span class="grad-orange">Then I Launch.</span></h2>
+    <p class="sub sub-w" style="text-align:center;margin:0 auto min(18px,2vh)" data-t="80">Everything is ready. Partners are waiting. I just need a yes on three things.</p>
 
     <div class="three-col" style="max-width:1000px;margin-bottom:min(14px,1.6vh)">
       <div class="q-card" style="border-color:rgba(255,159,10,.15)">
         <div class="q-num">Decision 1</div>
-        <div class="q-title">What's the hackathon theme?</div>
-        <div class="q-body" style="margin-bottom:8px">Three options that are trending right now:</div>
+        <div class="q-title" data-t="81">What's the hackathon theme?</div>
+        <div class="q-body" style="margin-bottom:8px" data-t="82">Three options that are trending right now:</div>
         <div><span class="option-pill">🤖 AI Agents</span></div>
         <div><span class="option-pill">💻 Vibe Coding</span></div>
         <div><span class="option-pill">🎯 Two-track</span></div>
       </div>
       <div class="q-card" style="border-color:rgba(255,159,10,.15)">
         <div class="q-num">Decision 2</div>
-        <div class="q-title">OpenClaw or open framework?</div>
-        <div class="q-body">Some people have concerns about OpenClaw's security — do we require OpenClaw, let people use any AI tool, or offer vibe coding with OpenClaw as one option?</div>
+        <div class="q-title" data-t="83">OpenClaw or open framework?</div>
+        <div class="q-body" data-t="84">Some people have concerns about OpenClaw's security — do we require OpenClaw, let people use any AI tool, or offer vibe coding with OpenClaw as one option?</div>
       </div>
       <div class="q-card" style="border-color:rgba(255,159,10,.15)">
         <div class="q-num">Decision 3</div>
-        <div class="q-title">Are we funding API keys?</div>
-        <div class="q-body">Most good hackathons do this. Partners have already asked about it. I need to know before I can post the event page.</div>
+        <div class="q-title" data-t="85">Are we funding API keys?</div>
+        <div class="q-body" data-t="86">Most good hackathons do this. Partners have already asked about it. I need to know before I can post the event page.</div>
       </div>
     </div>
 
     <div style="background:linear-gradient(135deg,rgba(0,113,227,.1),rgba(48,209,88,.08));border:1px solid rgba(0,113,227,.2);border-radius:14px;padding:min(16px,1.8vh) 20px;text-align:center">
-      <div style="font-size:12px;font-weight:700;color:var(--blue);text-transform:uppercase;letter-spacing:.1em;margin-bottom:10px">Once I Get the Go-Ahead</div>
+      <div style="font-size:12px;font-weight:700;color:var(--blue);text-transform:uppercase;letter-spacing:.1em;margin-bottom:10px" data-t="87">Once I Get the Go-Ahead</div>
       <div style="display:flex;gap:6px;justify-content:center;flex-wrap:wrap">
         <span style="padding:6px 12px;border-radius:100px;background:rgba(48,209,88,.1);color:var(--green);font-size:12px;font-weight:600">✓ Event page goes live — same day</span>
         <span style="padding:6px 12px;border-radius:100px;background:rgba(48,209,88,.1);color:var(--green);font-size:12px;font-weight:600">✓ SGInnovate posts it</span>
@@ -625,9 +630,9 @@ body{font-family:'Inter',-apple-system,sans-serif;-webkit-font-smoothing:antiali
 <!-- ═══ SLIDE 9: EVENTS — PRCA + IWD ═══════════════════ -->
 <div class="slide sd">
   <div style="width:100%;max-width:1100px">
-    <div class="ey" style="color:var(--purple);text-align:center">This Week on the Ground</div>
-    <h2 class="h2 h2w" style="text-align:center;margin-bottom:4px">2 Events. <span class="grad-purple">ChronoAI in the Room.</span></h2>
-    <p class="sub sub-w" style="text-align:center;margin:0 auto min(14px,1.6vh)">I showed up, introduced ChronoAI, and talked to people face-to-face. They know who we are now.</p>
+    <div class="ey" style="color:var(--purple);text-align:center" data-t="88">This Week on the Ground</div>
+    <h2 class="h2 h2w" style="text-align:center;margin-bottom:4px" data-t="89">2 Events. <span class="grad-purple">ChronoAI in the Room.</span></h2>
+    <p class="sub sub-w" style="text-align:center;margin:0 auto min(14px,1.6vh)" data-t="90">I showed up, introduced ChronoAI, and talked to people face-to-face. They know who we are now.</p>
 
     <div class="two-col" style="max-width:1100px;gap:16px">
       <div>
@@ -637,9 +642,9 @@ body{font-family:'Inter',-apple-system,sans-serif;-webkit-font-smoothing:antiali
         </div>
         <div style="padding:10px 12px;background:rgba(191,90,242,.06);border:1px solid rgba(191,90,242,.2);border-radius:12px;margin-bottom:8px">
           <div style="font-size:11px;font-weight:800;color:var(--purple);text-transform:uppercase;letter-spacing:.1em;margin-bottom:6px">PRCA APAC · 4 Mar</div>
-          <div style="display:flex;align-items:flex-start;gap:6px;margin-bottom:5px"><div style="color:var(--purple);font-weight:800;font-size:12px;flex-shrink:0;margin-top:1px">1</div><p style="font-size:12px;color:rgba(255,255,255,.65);line-height:1.45;margin:0"><strong style="color:#fff">"Be real, not perfect"</strong> — the big takeaway from Razer, ByteDance, Google speakers. Exactly what our live-demo hackathon does.</p></div>
-          <div style="display:flex;align-items:flex-start;gap:6px;margin-bottom:5px;padding:6px 8px;background:rgba(191,90,242,.08);border:1px solid rgba(191,90,242,.2);border-radius:8px"><div style="color:var(--purple);font-weight:800;font-size:12px;flex-shrink:0;margin-top:1px">2</div><p style="font-size:12px;color:rgba(255,255,255,.75);line-height:1.45;margin:0"><strong style="color:#fff">AI is the tool, humans decide.</strong> AI makes things faster, but people still make the final call. That's exactly how ChronoAI thinks about it.</p></div>
-          <div style="display:flex;align-items:flex-start;gap:6px"><div style="color:var(--purple);font-weight:800;font-size:12px;flex-shrink:0;margin-top:1px">3</div><p style="font-size:12px;color:rgba(255,255,255,.65);line-height:1.45;margin:0"><strong style="color:#fff">Real communities beat paid ads.</strong> Every panel said the same thing — build a community, don't just buy attention.</p></div>
+          <div style="display:flex;align-items:flex-start;gap:6px;margin-bottom:5px"><div style="color:var(--purple);font-weight:800;font-size:12px;flex-shrink:0;margin-top:1px">1</div><p style="font-size:12px;color:rgba(255,255,255,.65);line-height:1.45;margin:0" data-t="91"><strong style="color:#fff">"Be real, not perfect"</strong> — the big takeaway from Razer, ByteDance, Google speakers. Exactly what our live-demo hackathon does.</p></div>
+          <div style="display:flex;align-items:flex-start;gap:6px;margin-bottom:5px;padding:6px 8px;background:rgba(191,90,242,.08);border:1px solid rgba(191,90,242,.2);border-radius:8px"><div style="color:var(--purple);font-weight:800;font-size:12px;flex-shrink:0;margin-top:1px">2</div><p style="font-size:12px;color:rgba(255,255,255,.75);line-height:1.45;margin:0" data-t="92"><strong style="color:#fff">AI is the tool, humans decide.</strong> AI makes things faster, but people still make the final call. That's exactly how ChronoAI thinks about it.</p></div>
+          <div style="display:flex;align-items:flex-start;gap:6px"><div style="color:var(--purple);font-weight:800;font-size:12px;flex-shrink:0;margin-top:1px">3</div><p style="font-size:12px;color:rgba(255,255,255,.65);line-height:1.45;margin:0" data-t="93"><strong style="color:#fff">Real communities beat paid ads.</strong> Every panel said the same thing — build a community, don't just buy attention.</p></div>
         </div>
         <div style="display:flex;flex-wrap:wrap;gap:4px">
           <span class="conn-pill">🎮 <strong>Nikhil Kharoo</strong> · Razer</span>
@@ -655,7 +660,7 @@ body{font-family:'Inter',-apple-system,sans-serif;-webkit-font-smoothing:antiali
         </div>
         <div style="padding:10px 12px;background:rgba(48,209,88,.06);border:1px solid rgba(48,209,88,.2);border-radius:12px;margin-bottom:8px">
           <div style="font-size:11px;font-weight:800;color:var(--green);text-transform:uppercase;letter-spacing:.1em;margin-bottom:5px">IWD Codechella · ChatandBuild x CFTE</div>
-          <p style="font-size:12px;color:rgba(255,255,255,.65);line-height:1.45;margin:0"><strong style="color:#fff">Getting closer to ChatandBuild</strong> — went from just attending their event to now talking about co-hosting together. Not enough women-in-tech events in Singapore, this could fill that gap.</p>
+          <p style="font-size:12px;color:rgba(255,255,255,.65);line-height:1.45;margin:0" data-t="94"><strong style="color:#fff">Getting closer to ChatandBuild</strong> — went from just attending their event to now talking about co-hosting together. Not enough women-in-tech events in Singapore, this could fill that gap.</p>
         </div>
         <div style="display:flex;flex-wrap:wrap;gap:4px">
           <span class="conn-pill">🤖 <strong>Tetiana</strong> · Odyssea AI</span>
@@ -672,61 +677,61 @@ body{font-family:'Inter',-apple-system,sans-serif;-webkit-font-smoothing:antiali
 <!-- ═══ SLIDE 10: HONEST REVIEW — WHAT I LEARNED ══════════ -->
 <div class="slide sd">
   <div style="width:100%;max-width:1100px">
-    <div class="ey" style="color:var(--orange);text-align:center">Honest Review</div>
-    <h2 class="h2 h2w" style="text-align:center;margin-bottom:4px">What Went Well.<br><span class="grad-orange">Where I Fell Short.</span></h2>
-    <p class="sub sub-w" style="text-align:center;margin:0 auto min(14px,1.6vh)">I'm being straight about this — some things landed, but I missed the mark on others. Here's what I've learned and what I'm changing.</p>
+    <div class="ey" style="color:var(--orange);text-align:center" data-t="95">Honest Review</div>
+    <h2 class="h2 h2w" style="text-align:center;margin-bottom:4px" data-t="96">What Went Well.<br><span class="grad-orange">Where I Fell Short.</span></h2>
+    <p class="sub sub-w" style="text-align:center;margin:0 auto min(14px,1.6vh)" data-t="97">I'm being straight about this — some things landed, but I missed the mark on others. Here's what I've learned and what I'm changing.</p>
 
     <div class="two-col" style="max-width:1100px;gap:14px;margin-bottom:min(12px,1.4vh)">
       <div>
-        <div style="font-size:11px;font-weight:800;color:var(--green);text-transform:uppercase;letter-spacing:.1em;margin-bottom:8px">✓ What Went Well</div>
+        <div style="font-size:11px;font-weight:800;color:var(--green);text-transform:uppercase;letter-spacing:.1em;margin-bottom:8px" data-t="98">✓ What Went Well</div>
         <div style="background:rgba(48,209,88,.04);border:1px solid rgba(48,209,88,.15);border-radius:12px;padding:min(12px,1.4vh) 14px;margin-bottom:8px">
-          <div style="font-size:13px;font-weight:700;color:#fff;margin-bottom:3px">Hackathon + Partners</div>
-          <p style="font-size:12px;color:rgba(255,255,255,.55);line-height:1.45;margin:0">Plan done, 3 partners confirmed at $0, format ready. This part moved fast and I'm confident in the groundwork.</p>
+          <div style="font-size:13px;font-weight:700;color:#fff;margin-bottom:3px" data-t="99">Hackathon + Partners</div>
+          <p style="font-size:12px;color:rgba(255,255,255,.55);line-height:1.45;margin:0" data-t="100">Plan done, 3 partners confirmed at $0, format ready. This part moved fast and I'm confident in the groundwork.</p>
         </div>
         <div style="background:rgba(48,209,88,.04);border:1px solid rgba(48,209,88,.15);border-radius:12px;padding:min(12px,1.4vh) 14px;margin-bottom:8px">
-          <div style="font-size:13px;font-weight:700;color:#fff;margin-bottom:3px">2 Events Attended</div>
-          <p style="font-size:12px;color:rgba(255,255,255,.55);line-height:1.45;margin:0">PRCA + IWD Codechella. Made real connections with people from Razer, ByteDance, Founders Forum.</p>
+          <div style="font-size:13px;font-weight:700;color:#fff;margin-bottom:3px" data-t="101">2 Events Attended</div>
+          <p style="font-size:12px;color:rgba(255,255,255,.55);line-height:1.45;margin:0" data-t="102">PRCA + IWD Codechella. Made real connections with people from Razer, ByteDance, Founders Forum.</p>
         </div>
         <div style="background:rgba(255,159,10,.04);border:1px solid rgba(255,159,10,.18);border-radius:12px;padding:min(12px,1.4vh) 14px">
           <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:3px">
             <div style="font-size:13px;font-weight:700;color:#fff">RiteSet 2.0</div>
             <span class="p-status ps-progress" style="font-size:10px">Slight Delay</span>
           </div>
-          <p style="font-size:12px;color:rgba(255,255,255,.55);line-height:1.45;margin:0">AI backend done. Submitting to App Store by end of this week. Brand update still in progress.</p>
+          <p style="font-size:12px;color:rgba(255,255,255,.55);line-height:1.45;margin:0" data-t="103">AI backend done. Submitting to App Store by end of this week. Brand update still in progress.</p>
         </div>
       </div>
 
       <div>
-        <div style="font-size:11px;font-weight:800;color:var(--red);text-transform:uppercase;letter-spacing:.1em;margin-bottom:8px">✗ Where I Fell Short</div>
+        <div style="font-size:11px;font-weight:800;color:var(--red);text-transform:uppercase;letter-spacing:.1em;margin-bottom:8px" data-t="104">✗ Where I Fell Short</div>
         <div style="background:rgba(255,69,58,.06);border:1px solid rgba(255,69,58,.2);border-radius:12px;padding:min(12px,1.4vh) 14px;margin-bottom:8px">
-          <div style="font-size:13px;font-weight:700;color:#fff;margin-bottom:3px">SoulGarden — No Data Dashboard</div>
-          <p style="font-size:12px;color:rgba(255,255,255,.55);line-height:1.45;margin:0">We launched, but I didn't set up a dashboard to track downloads, users, or performance. 26 total downloads. 12 from SG — likely our own people. I should have had this ready before launch, not after.</p>
+          <div style="font-size:13px;font-weight:700;color:#fff;margin-bottom:3px" data-t="105">SoulGarden — No Data Dashboard</div>
+          <p style="font-size:12px;color:rgba(255,255,255,.55);line-height:1.45;margin:0" data-t="106">We launched, but I didn't set up a dashboard to track downloads, users, or performance. 26 total downloads. 12 from SG — likely our own people. I should have had this ready before launch, not after.</p>
         </div>
         <div style="background:rgba(255,69,58,.06);border:1px solid rgba(255,69,58,.2);border-radius:12px;padding:min(12px,1.4vh) 14px;margin-bottom:8px">
-          <div style="font-size:13px;font-weight:700;color:#fff;margin-bottom:3px">No Clear Goals for SoulGarden</div>
-          <p style="font-size:12px;color:rgba(255,255,255,.55);line-height:1.45;margin:0">Activities, user research, social posts — I didn't set specific targets for any of it. Without numbers to aim for, there's nothing to measure and no way to know if we're winning or losing.</p>
+          <div style="font-size:13px;font-weight:700;color:#fff;margin-bottom:3px" data-t="107">No Clear Goals for SoulGarden</div>
+          <p style="font-size:12px;color:rgba(255,255,255,.55);line-height:1.45;margin:0" data-t="108">Activities, user research, social posts — I didn't set specific targets for any of it. Without numbers to aim for, there's nothing to measure and no way to know if we're winning or losing.</p>
         </div>
         <div style="background:rgba(255,69,58,.06);border:1px solid rgba(255,69,58,.2);border-radius:12px;padding:min(12px,1.4vh) 14px">
-          <div style="font-size:13px;font-weight:700;color:#fff;margin-bottom:3px">Waiting Instead of Leading</div>
-          <p style="font-size:12px;color:rgba(255,255,255,.55);line-height:1.45;margin:0">I've been handing over plans and waiting for feedback — instead of pressure-testing them myself first and coming with solutions, not just options.</p>
+          <div style="font-size:13px;font-weight:700;color:#fff;margin-bottom:3px" data-t="109">Waiting Instead of Leading</div>
+          <p style="font-size:12px;color:rgba(255,255,255,.55);line-height:1.45;margin:0" data-t="110">I've been handing over plans and waiting for feedback — instead of pressure-testing them myself first and coming with solutions, not just options.</p>
         </div>
       </div>
     </div>
 
     <div style="background:linear-gradient(135deg,rgba(0,113,227,.08),rgba(100,210,255,.05));border:1.5px solid rgba(0,113,227,.25);border-radius:14px;padding:min(14px,1.6vh) 18px">
-      <div style="font-size:11px;font-weight:800;color:var(--blue);text-transform:uppercase;letter-spacing:.1em;margin-bottom:8px">What I'm Changing — Starting Now</div>
+      <div style="font-size:11px;font-weight:800;color:var(--blue);text-transform:uppercase;letter-spacing:.1em;margin-bottom:8px" data-t="111">What I'm Changing — Starting Now</div>
       <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px">
         <div style="display:flex;align-items:flex-start;gap:8px">
           <span style="font-size:14px;flex-shrink:0">📊</span>
-          <p style="font-size:12px;color:rgba(255,255,255,.65);line-height:1.45;margin:0"><strong style="color:#fff">Build the SoulGarden data dashboard this week.</strong> Downloads, active users, retention — tracked daily, not after the fact.</p>
+          <p style="font-size:12px;color:rgba(255,255,255,.65);line-height:1.45;margin:0" data-t="112"><strong style="color:#fff">Build the SoulGarden data dashboard this week.</strong> Downloads, active users, retention — tracked daily, not after the fact.</p>
         </div>
         <div style="display:flex;align-items:flex-start;gap:8px">
           <span style="font-size:14px;flex-shrink:0">🎯</span>
-          <p style="font-size:12px;color:rgba(255,255,255,.65);line-height:1.45;margin:0"><strong style="color:#fff">Set hard targets before I start work.</strong> Every activity gets a number attached. If I can't measure it, I don't do it.</p>
+          <p style="font-size:12px;color:rgba(255,255,255,.65);line-height:1.45;margin:0" data-t="113"><strong style="color:#fff">Set hard targets before I start work.</strong> Every activity gets a number attached. If I can't measure it, I don't do it.</p>
         </div>
         <div style="display:flex;align-items:flex-start;gap:8px">
           <span style="font-size:14px;flex-shrink:0">🔍</span>
-          <p style="font-size:12px;color:rgba(255,255,255,.65);line-height:1.45;margin:0"><strong style="color:#fff">Audit my own work before presenting it.</strong> No more handing over plans and waiting. I stress-test first, then bring answers.</p>
+          <p style="font-size:12px;color:rgba(255,255,255,.65);line-height:1.45;margin:0" data-t="114"><strong style="color:#fff">Audit my own work before presenting it.</strong> No more handing over plans and waiting. I stress-test first, then bring answers.</p>
         </div>
       </div>
     </div>
@@ -737,27 +742,27 @@ body{font-family:'Inter',-apple-system,sans-serif;-webkit-font-smoothing:antiali
 <div class="slide sd">
   <div style="width:100%;max-width:1100px">
     <div style="text-align:center;margin-bottom:min(16px,1.8vh)">
-      <div class="ey" style="color:var(--teal)">My First 3 Months · Dec 2025 – Mar 2026</div>
-      <h2 class="h2 h2w" style="text-align:center;margin-bottom:4px">Every Partnership <span class="grad">I've Built.</span></h2>
-      <p class="sub sub-w" style="text-align:center;margin:0 auto">Starting from zero connections in Singapore's AI scene — here's what I've opened up for ChronoAI in 3 months.</p>
+      <div class="ey" style="color:var(--teal)" data-t="115">My First 3 Months · Dec 2025 – Mar 2026</div>
+      <h2 class="h2 h2w" style="text-align:center;margin-bottom:4px" data-t="116">Every Partnership <span class="grad">I've Built.</span></h2>
+      <p class="sub sub-w" style="text-align:center;margin:0 auto" data-t="117">Starting from zero connections in Singapore's AI scene — here's what I've opened up for ChronoAI in 3 months.</p>
     </div>
 
     <div class="eco-grid" style="margin-bottom:min(12px,1.4vh)">
       <div class="eco-seg">
-        <div class="eco-seg-head"><div class="eco-seg-dot" style="background:var(--green)"></div><div class="eco-seg-title" style="color:var(--green)">Hackathon · Active Now</div></div>
+        <div class="eco-seg-head"><div class="eco-seg-dot" style="background:var(--green)"></div><div class="eco-seg-title" style="color:var(--green)" data-t="118">Hackathon · Active Now</div></div>
         <div class="eco-row"><div class="eco-icon" style="background:rgba(48,209,88,.1)">🏛️</div><div class="eco-info"><div class="eco-name">SGInnovate</div><div class="eco-detail">Gov org. Lists hackathon to 190K+ members.</div></div><div class="eco-badge" style="background:rgba(48,209,88,.15);color:var(--green)">✓ Done</div></div>
         <div class="eco-row"><div class="eco-icon" style="background:rgba(0,113,227,.1)">⚡</div><div class="eco-info"><div class="eco-name">First Prompt</div><div class="eco-detail">500+ AI community. Shares to their members.</div></div><div class="eco-badge" style="background:rgba(48,209,88,.15);color:var(--green)">✓ Done</div></div>
         <div class="eco-row"><div class="eco-icon" style="background:rgba(255,159,10,.1)">📰</div><div class="eco-info"><div class="eco-name">e27</div><div class="eco-detail">SEA startup media. 180K newsletter readers.</div></div><div class="eco-badge" style="background:rgba(48,209,88,.15);color:var(--green)">✓ Done</div></div>
         <div class="eco-row"><div class="eco-icon" style="background:rgba(191,90,242,.1)">💬</div><div class="eco-info"><div class="eco-name">ChatandBuild</div><div class="eco-detail">AI builders + women-in-tech community.</div></div><div class="eco-badge" style="background:rgba(255,159,10,.15);color:var(--orange)">Talking</div></div>
       </div>
       <div class="eco-seg">
-        <div class="eco-seg-head"><div class="eco-seg-dot" style="background:var(--teal)"></div><div class="eco-seg-title" style="color:var(--teal)">Media · Built Over 3 Months</div></div>
+        <div class="eco-seg-head"><div class="eco-seg-dot" style="background:var(--teal)"></div><div class="eco-seg-title" style="color:var(--teal)" data-t="119">Media · Built Over 3 Months</div></div>
         <div class="eco-row"><div class="eco-icon" style="background:rgba(255,159,10,.1)">📚</div><div class="eco-info"><div class="eco-name">Stack Overflow</div><div class="eco-detail">Negotiated $60K→$25K. Podcast slot secured.</div></div><div class="eco-badge" style="background:rgba(255,159,10,.15);color:var(--orange)">Paused</div></div>
         <div class="eco-row"><div class="eco-icon" style="background:rgba(191,90,242,.1)">🎙️</div><div class="eco-info"><div class="eco-name">Era of AI Podcast</div><div class="eco-detail">SoulGarden episode. Recording this month.</div></div><div class="eco-badge" style="background:rgba(48,209,88,.15);color:var(--green)">✓ Done</div></div>
         <div class="eco-row"><div class="eco-icon" style="background:rgba(100,210,255,.1)">🔍</div><div class="eco-info"><div class="eco-name">Google</div><div class="eco-detail">Early conversations started.</div></div><div class="eco-badge" style="background:rgba(191,90,242,.15);color:var(--purple)">Early</div></div>
       </div>
       <div class="eco-seg">
-        <div class="eco-seg-head"><div class="eco-seg-dot" style="background:var(--purple)"></div><div class="eco-seg-title" style="color:var(--purple)">Community · In the Pipeline</div></div>
+        <div class="eco-seg-head"><div class="eco-seg-dot" style="background:var(--purple)"></div><div class="eco-seg-title" style="color:var(--purple)" data-t="120">Community · In the Pipeline</div></div>
         <div class="eco-row"><div class="eco-icon" style="background:rgba(191,90,242,.1)">🏢</div><div class="eco-info"><div class="eco-name">Mandala Club</div><div class="eco-detail">Private members club. AI events in April.</div></div><div class="eco-badge" style="background:rgba(191,90,242,.15);color:var(--purple)">April</div></div>
         <div class="eco-row"><div class="eco-icon" style="background:rgba(191,90,242,.1)">🤖</div><div class="eco-info"><div class="eco-name">LorongAI</div><div class="eco-detail">AI community space in Singapore.</div></div><div class="eco-badge" style="background:rgba(191,90,242,.15);color:var(--purple)">Next</div></div>
       </div>
@@ -796,6 +801,148 @@ function goTo(i){if(anim||i===cur)return;anim=true;slides[cur].classList.remove(
 function go(d){goTo((cur+d+total)%total)}
 document.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key==='ArrowDown')go(1);if(e.key==='ArrowLeft'||e.key==='ArrowUp')go(-1)});
 ui();
+
+const zh={
+1:'第10周进度 · 2026年3月5日',
+2:'零花费。锁定3个合作伙伴。<br><span class="grad">黑客松蓄势待发。</span>',
+3:'我通过个人交流成功拉到了SGInnovate、First Prompt和e27——黑客松方案已就绪，就等您点头。',
+4:'ChronoAI · 市场与合作伙伴',
+5:'愿景',
+6:'ChronoAI <span class="grad">Vibe-Coding 黑客松。</span>',
+7:'一场真正用AI现场编程的活动。让ChronoAI走进新加坡AI社区视野，成为人人都想参与的地方。',
+8:'学生与创客',
+9:'吸引大学生、工程师和编程爱好者了解ChronoAI——他们是我们未来的用户和潜在人才。',
+10:'政府曝光',
+11:'SGInnovate会把我们的活动列在他们的政府平台上——ChronoAI将与新加坡国家级AI项目并列展示。',
+12:'投资人曝光',
+13:'e27拥有1,770位活跃投资人和18万订阅读者。他们会看到ChronoAI——这些人就是写支票的人。',
+14:'本周成就',
+15:'3个重量级伙伴。<span class="grad-green">零花费。</span>',
+16:'没有广告，没有赞助预算。每个合作伙伴都是我通过喝咖啡和面对面沟通拿下的。这些都是很挑剔的组织——他们答应是因为认可我们在做的事。',
+17:'他们为我们打开的资源',
+18:'合作伙伴总成本',
+19:'纯靠关系拓展。纯靠人脉积累。',
+20:'合作伙伴 1 · 已确认',
+21:'<strong style="color:#fff">新加坡政府机构</strong>，专注深科技。新加坡政府正在投入10亿美元发展AI，由黄循财总理担任AI委员会主席。与他们合作让ChronoAI显得有分量——并让我们触达数千名学生。',
+22:'政府背景',
+23:'国家级机构',
+24:'学生',
+25:'数千名创客',
+26:'深科技',
+27:'AI、区块链',
+28:'为什么重要',
+29:'<strong>我们的黑客松会被列在他们的平台上</strong>——数千名学生都会看到。',
+30:'<strong>政府背书</strong>——让我们在大学和其他大型机构面前更有公信力。',
+31:'他们的受众<strong>正是我想让使用ChronoAI的人</strong>。',
+32:'合作方式',
+33:'<strong style="color:#fff">他们把我们的黑客松列在社区公告板上</strong>——19万+成员和学生都会看到。',
+34:'<strong style="color:#fff">政府认证</strong>——ChronoAI将与国家级AI项目并列展示。',
+35:'🇸🇬 为什么时机很重要',
+36:'我是怎么拿下的',
+37:'SGInnovate对合作对象很挑剔。我约他们见面，分享了黑客松的想法，他们答应了。没花一分钱。',
+38:'合作伙伴 2 · 已确认',
+39:'<strong style="color:#fff">新加坡活跃的AI社区</strong>，在亚太地区举办大型AI活动。阿里云、华为AI和OpenAI的嘉宾都上过他们的舞台——这就是ChronoAI现在对接到的层级。',
+40:'为什么重要',
+41:'<strong>新加坡AI圈的聚集地。</strong>创客、研究者和创始人——这些人会第一个尝试新工具，然后告诉所有人。',
+42:'<strong>我们可以持续曝光。</strong>每次First Prompt活动都是ChronoAI露脸的机会——不需要我们自己办活动。',
+43:'<strong>大咖人脉。</strong>阿里云、华为AI、OpenAI的演讲嘉宾——这就是这个社区的级别。',
+44:'合作方式',
+45:'<strong style="color:#fff">他们会把我们的黑客松推给社区</strong>——新加坡500+位AI创客和创始人。',
+46:'我是怎么拿下的',
+47:'不是冷邮件。我约他们喝咖啡，聊了黑客松的事，他们主动想参与。没花一分钱。',
+48:'合作伙伴 3 · 已确认',
+49:'东南亚最大的创业平台。<strong style="color:#fff">创始人和投资人</strong>每天都在看e27。上了e27意味着<strong style="color:#fff">投资人会看到ChronoAI</strong>。',
+50:'为什么重要',
+51:'<strong>投资人会看到我们。</strong>1,770位活跃投资人使用e27。我们的黑客松会出现在他们的视野里。',
+52:'<strong>一个伙伴带来两件事。</strong>他们会推广黑客松，还会在18万读者的Newsletter里介绍SoulGarden。零成本。',
+53:'<strong>内置媒体渠道</strong>——ChronoAI未来每次发布都能触达东南亚的决策者。',
+54:'合作方式',
+55:'<strong style="color:#fff">他们会把黑客松放进Newsletter</strong>——覆盖亚太18万读者，都是创始人、投资人和决策者。',
+56:'我是怎么拿下的',
+57:'e27不是谁都合作的。我告诉他们ChronoAI在做什么，他们马上就感兴趣了。零成本。',
+58:'另一层面的合作',
+59:'行业 <span class="grad-purple">意见领袖。</span>',
+60:'除了社区合作伙伴，我还在邀请AI领域的知名人士做评委和导师——给黑客松增添真正的分量。',
+61:'外部 · AI社区',
+62:'组织过新加坡最成功的OpenClaw黑客松之一。深谙如何让这类活动成功。',
+63:'外部 · AI主题演讲人',
+64:'创始人兼CEO。知名AI演讲者——有他在场，人就会来。',
+65:'内部 · 商务总监',
+66:'AI演讲者，我们的商务总监。评审团队<strong style="color:#fff">把产品推向市场</strong>的能力。',
+67:'内部 · 设计主管',
+68:'我们的设计主管。从<strong style="color:#fff">设计和用户体验</strong>角度评审。',
+69:'黑客松',
+70:'黑客松：<span class="grad">ChronoAI Vibe-Coding Day</span>',
+71:'一整天的黑客松，奖金1万美元现金——目前新加坡AI黑客松中最大的现金奖。',
+72:'为什么要办',
+73:'<strong style="color:#fff">新加坡AI黑客松正在爆发</strong>——但大型活动都没有现金奖。OpenClaw有457人参加，奖金$0。Agent Forge有274人，只有$2K积分。',
+74:'我们提供<strong style="color:#fff">1万美元真金白银</strong>——光这一点就能让所有人都想参加。',
+75:'赛制',
+76:'现场80人。<strong style="color:#fff">20位Vibe-coder</strong>现场竞技，争夺1万美元现金、投资人引荐和创始团队辅导机会。<strong style="color:#fff">60位社区成员</strong>来观赛、社交、看Demo、感受现场氛围。',
+77:'目标指标——我的预期',
+78:'蓄势待发',
+79:'3个决定。<br><span class="grad-orange">然后我就启动。</span>',
+80:'一切就绪。合作伙伴在等消息。只需要三件事的确认。',
+81:'黑客松主题是什么？',
+82:'目前最热门的三个方向：',
+83:'OpenClaw还是开放框架？',
+84:'有人对OpenClaw的安全性有顾虑——是要求用OpenClaw，允许用任何AI工具，还是提供以OpenClaw为选项之一的Vibe-coding？',
+85:'我们提供API密钥吗？',
+86:'大多数好的黑客松都会提供。合作伙伴已经问了。我需要在发布活动页之前知道答案。',
+87:'一旦获得批准',
+88:'本周实地行动',
+89:'2场活动。<span class="grad-purple">ChronoAI在现场。</span>',
+90:'我亲自到场，介绍了ChronoAI，面对面和人交流。他们现在知道我们是谁了。',
+91:'<strong style="color:#fff">"真实比完美更重要"</strong>——Razer、ByteDance、Google演讲者的核心观点。正是我们现场Demo黑客松在做的事。',
+92:'<strong style="color:#fff">AI是工具，人来决策。</strong>AI让事情更快，但最终拍板的还是人。这正是ChronoAI的理念。',
+93:'<strong style="color:#fff">真正的社区胜过付费广告。</strong>每个嘉宾都在说——建社区，别只是花钱买关注。',
+94:'<strong style="color:#fff">跟ChatandBuild越走越近</strong>——从单纯参加活动到现在在谈联合举办。新加坡缺女性科技活动，这能填补空白。',
+95:'诚实复盘',
+96:'做得好的。<br><span class="grad-orange">做得不够的。</span>',
+97:'我实话实说——有些事做到了，但有些确实没做到位。以下是我的总结和改变。',
+98:'✓ 做得好的',
+99:'黑客松 + 合作伙伴',
+100:'方案完成，3个伙伴零成本确认，赛制准备好。这部分推进很快，我对基础工作有信心。',
+101:'参加了2场活动',
+102:'PRCA + IWD Codechella。认识了来自Razer、ByteDance、Founders Forum的人。',
+103:'AI后端已完成。本周末前提交App Store。品牌更新仍在进行中。',
+104:'✗ 做得不够的',
+105:'SoulGarden——没有数据看板',
+106:'上线了，但我没搭数据看板来追踪下载量、用户和表现。总下载26次。12次来自新加坡——很可能是我们自己人。这应该在上线前就准备好，不是事后。',
+107:'SoulGarden没有明确目标',
+108:'活动、用户调研、社交帖子——我没给任何一项设具体指标。没有目标就无法衡量，就不知道做得好还是不好。',
+109:'等待而不是主导',
+110:'我一直在交方案然后等反馈——而不是先自己压力测试，带着答案来，而不是只给选项。',
+111:'我正在改变的——从现在开始',
+112:'<strong style="color:#fff">本周搭建SoulGarden数据看板。</strong>下载量、活跃用户、留存——每天跟踪，而不是事后补。',
+113:'<strong style="color:#fff">开始工作前先设硬指标。</strong>每项活动都要有数字目标。不能衡量的事，不做。',
+114:'<strong style="color:#fff">先审视自己的工作再汇报。</strong>不再交方案等反馈。我先压力测试，然后带着答案来。',
+115:'我的前3个月 · 2025年12月 – 2026年3月',
+116:'我建立的每一个 <span class="grad">合作关系。</span>',
+117:'从新加坡AI圈零人脉起步——这是我3个月为ChronoAI开拓的成果。',
+118:'黑客松 · 进行中',
+119:'媒体 · 3个月积累',
+120:'社区 · 储备中'
+};
+
+let lang='en';
+function setLang(l){
+  if(l===lang)return;
+  lang=l;
+  document.querySelectorAll('#langToggle button').forEach(b=>{
+    b.classList.toggle('active',b.textContent.trim()===(l==='en'?'EN':'中文'));
+  });
+  document.querySelectorAll('[data-t]').forEach(el=>{
+    const k=el.getAttribute('data-t');
+    if(l==='zh'){
+      if(!el.hasAttribute('data-en'))el.setAttribute('data-en',el.innerHTML);
+      if(zh[k])el.innerHTML=zh[k];
+    }else{
+      const orig=el.getAttribute('data-en');
+      if(orig!==null)el.innerHTML=orig;
+    }
+  });
+}
 </script>
 </body>
 </html>
