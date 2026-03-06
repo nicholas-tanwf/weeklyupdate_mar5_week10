@@ -11,7 +11,7 @@
 body{font-family:'Inter',-apple-system,sans-serif;-webkit-font-smoothing:antialiased;background:#000;color:var(--black);overflow:hidden;height:100vh;width:100vw}
 
 .slideshow{width:100vw;height:100vh;position:relative}
-.slide{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .55s cubic-bezier(.4,0,.2,1),transform .55s cubic-bezier(.4,0,.2,1);transform:scale(.97) translateY(8px);padding:28px 48px;overflow:hidden;overflow-y:auto}
+.slide{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .55s cubic-bezier(.4,0,.2,1),transform .55s cubic-bezier(.4,0,.2,1);transform:scale(.97) translateY(8px);padding:28px 48px;overflow-y:auto;overflow-x:hidden}
 .slide.active{opacity:1;pointer-events:all;transform:scale(1) translateY(0)}
 
 .progress-track{position:fixed;top:0;left:0;right:0;height:3px;background:rgba(255,255,255,.06);z-index:200}
@@ -101,6 +101,40 @@ body{font-family:'Inter',-apple-system,sans-serif;-webkit-font-smoothing:antiali
 .conn-pill{display:inline-flex;align-items:center;gap:6px;padding:6px 14px;border-radius:100px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);font-size:12px;color:rgba(255,255,255,.6);margin:3px}
 .conn-pill strong{color:#fff;font-weight:600}
 
+@media(max-height:920px){
+  .slide{padding:16px 40px;justify-content:flex-start;padding-top:28px}
+  .h2{font-size:clamp(26px,4vw,44px);margin-bottom:6px}
+  .sub{font-size:15px;margin-bottom:16px}
+  .cover-h1{font-size:clamp(36px,5vw,60px);margin-bottom:10px}
+  .cover-sub{font-size:17px;margin-bottom:20px}
+  .cover-tag{margin-bottom:10px}
+  .ey{font-size:12px;margin-bottom:4px}
+  .two-col{gap:18px}
+  .three-col{gap:8px}
+  .four-col{gap:8px}
+  .card{padding:14px;border-radius:12px}
+  .tk-item{margin-bottom:8px;gap:8px}
+  .tk-num{width:24px;height:24px;font-size:11px}
+  .tk-text{font-size:13px}
+  .hack-stat strong{font-size:28px}
+  .hack-stat{padding:10px 8px}
+  .q-card{padding:14px}
+  .eco-hub{margin-bottom:16px}
+  .eco-brand{font-size:clamp(34px,4vw,50px)}
+  .eco-grid{gap:10px}
+  .eco-seg{padding:14px 12px}
+  .eco-row{padding:6px 10px;margin-bottom:4px}
+  .conn-pill{padding:4px 10px;font-size:11px}
+  .p-card{padding:14px 12px}
+}
+@media(max-height:780px){
+  .slide{padding:10px 32px;padding-top:20px}
+  .h2{font-size:clamp(22px,3.5vw,36px);margin-bottom:4px}
+  .sub{font-size:14px;margin-bottom:12px}
+  .cover-h1{font-size:clamp(30px,4.5vw,50px)}
+  .cover-sub{font-size:15px;margin-bottom:14px}
+  .two-col{gap:14px}
+}
 @media(max-width:768px){.slide{padding:20px 16px}.two-col,.three-col,.four-col,.eco-grid{grid-template-columns:1fr}.photo-grid-3,.photo-grid-2{grid-template-columns:1fr}}
 </style>
 </head>
@@ -309,8 +343,8 @@ body{font-family:'Inter',-apple-system,sans-serif;-webkit-font-smoothing:antiali
       <h2 class="h2 h2w" style="font-size:clamp(30px,4vw,48px)"><span class="grad">First Prompt</span></h2>
       <p style="color:rgba(255,255,255,.55);font-size:16px;line-height:1.6;margin-bottom:14px">An <strong style="color:#fff">active AI community in Singapore</strong>, known for hosting flagship AI events across APAC. Panelists from Alibaba Cloud, Huawei AI, OpenAI — the calibre of people who attend signals the quality of network I've connected ChronoAI to.</p>
       <div class="photo-grid photo-grid-2" style="gap:6px;margin-bottom:14px">
-        <img src="./img/fp2.png" alt="First Prompt" style="height:220px;border-radius:10px">
-        <img src="./img/fp1.png" alt="First Prompt" style="height:220px;border-radius:10px">
+        <img src="./img/fp2.png" alt="First Prompt" style="height:min(220px,22vh);border-radius:10px">
+        <img src="./img/fp1.png" alt="First Prompt" style="height:min(220px,22vh);border-radius:10px">
       </div>
       <div style="display:flex;gap:10px;margin-bottom:14px">
         <div style="flex:1;text-align:center;background:rgba(0,113,227,.06);border:1px solid rgba(0,113,227,.2);border-radius:12px;padding:18px 8px">
@@ -573,8 +607,8 @@ body{font-family:'Inter',-apple-system,sans-serif;-webkit-font-smoothing:antiali
       <!-- PRCA -->
       <div>
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:10px">
-          <img src="./img/prca1.png" alt="PRCA" style="border-radius:12px;width:100%;height:180px;object-fit:cover">
-          <img src="./img/prca3.png" alt="PRCA" style="border-radius:12px;width:100%;height:180px;object-fit:cover">
+          <img src="./img/prca1.png" alt="PRCA" style="border-radius:12px;width:100%;height:min(180px,18vh);object-fit:cover">
+          <img src="./img/prca3.png" alt="PRCA" style="border-radius:12px;width:100%;height:min(180px,18vh);object-fit:cover">
         </div>
         <div style="padding:14px 16px;background:rgba(191,90,242,.06);border:1px solid rgba(191,90,242,.2);border-radius:14px;margin-bottom:10px">
           <div style="font-size:12px;font-weight:800;color:var(--purple);text-transform:uppercase;letter-spacing:.1em;margin-bottom:8px">PRCA APAC · 4 Mar</div>
@@ -592,8 +626,8 @@ body{font-family:'Inter',-apple-system,sans-serif;-webkit-font-smoothing:antiali
       <!-- IWD -->
       <div>
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:10px">
-          <img src="./img/iwd1.png" alt="IWD" style="border-radius:12px;width:100%;height:180px;object-fit:cover">
-          <img src="./img/iwd2.png" alt="IWD" style="border-radius:12px;width:100%;height:180px;object-fit:cover">
+          <img src="./img/iwd1.png" alt="IWD" style="border-radius:12px;width:100%;height:min(180px,18vh);object-fit:cover">
+          <img src="./img/iwd2.png" alt="IWD" style="border-radius:12px;width:100%;height:min(180px,18vh);object-fit:cover">
         </div>
         <div style="padding:14px 16px;background:rgba(48,209,88,.06);border:1px solid rgba(48,209,88,.2);border-radius:14px;margin-bottom:10px">
           <div style="font-size:12px;font-weight:800;color:var(--green);text-transform:uppercase;letter-spacing:.1em;margin-bottom:6px">IWD Codechella · ChatandBuild x CFTE</div>
